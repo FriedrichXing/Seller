@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+		    <ul class="mui-table-view mui-grid-view mui-grid-9">
+		    <li id="goodsMgr" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a>
+		            <span class="mui-icon mui-icon-location"></span>
+		            <div class="mui-media-body">商品管理</div>
+		        </a>
+		    </li>
+		    <li id="ordersMgr" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a>
+		            <span class="mui-icon mui-icon-search"></span>
+		            <div class="mui-media-body">订单管理</div>
+		        </a>
+		    </li>
+		    <li id="joinInMgr" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a>
+		            <span class="mui-icon mui-icon-phone"></span>
+		            <div class="mui-media-body">加盟管理</div>
+		        </a>
+		    </li>
+		    <li id="newsMgr" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a>
+		            <span class="mui-icon mui-icon-location"></span>
+		            <div class="mui-media-body">新闻管理</div>
+		        </a>
+		    </li>
+		    <li id="companyMgr" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a>
+		            <span class="mui-icon mui-icon-search"></span>
+		            <div class="mui-media-body">企业管理</div>
+		        </a>
+		    </li>
+		    <li id="messages" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a>
+		            <span class="mui-icon mui-icon-phone"></span>
+		            <div class="mui-media-body">消息留言</div>
+		        </a>
+		    </li>
+		        </ul>
+		    
+		</div>		
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			mui.plusReady(function(){
+				document.getElementById("goodsMgr").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'../goodsMgr/goodsMgr.html'
+					});
+				});
+				
+				document.getElementById("ordersMgr").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'../ordersMgr/ordersMgr.html'
+					});
+				});
+				
+				document.getElementById("joinInMgr").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'../joinInMgr/joinInMgr.html'
+					});
+				});
+				
+				document.getElementById("newsMgr").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'../newsMgr/newsMgr.html'
+					});
+				});
+				document.getElementById("companyMgr").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'../companyMgr/companyMgr.html'
+					});
+				});
+				document.getElementById("messages").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'../messages/messages.html'
+					});
+				});
+				
+			});
+		</script>
+	</body>
+
+</html>

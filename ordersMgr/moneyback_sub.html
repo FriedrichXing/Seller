@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="OA_task_1" class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+
+				</ul>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/md5-min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					pullupRefresh();
+					mui.toast("刷新成功！")
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 500);
+			}
+
+			var count = 0;
+			var count2 = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+
+				mui.ajax('http://api.msyc.com.cn/api/admin/order/start/moneyback', {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(mdata) {
+						count2 = mdata.data.length % 3 + 1;
+						setTimeout(function() {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > count2)); //参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.mui-table-view');
+							var cells = document.body.querySelectorAll('.mui-table-view-cell');
+
+							for(var i = cells.length, len = i + 5; i < len; i++) {
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								li.id = mdata.data[i].orderid;
+
+								li.innerHTML = '<div class="mui-slider-right mui-disabled">' +
+									'<a class="mui-btn mui-btn-red">删除</a>' +
+									'</div>' +
+									'<div class="mui-slider-handle">' +
+									'<div class="mui-table">' +
+									'<div class="mui-table-cell mui-col-xs-10">' +
+									'<p class="mui-h5 mui-ellipsis"><span>用户名：<span>' + mdata.data[i].username +
+									'</span></span></p>' +
+									'<p class="mui-h5 mui-ellipsis"><span>订单编号：<span>' + mdata.data[i].ordernum +
+									'</span></span></p>' +
+									'<p class="mui-h5 mui-ellipsis"><span>联系人/电话：<span>' + mdata.data[i].truename + '/' + mdata.data[i].telephone +
+									'</span></span></p>' +
+									'<p class="mui-h5 mui-ellipsis"><span>订单状态：<span style="color:#41CEA9;font-weight:bold;">' + mdata.data[i].status +
+									'</span></span></p>' + '</div></div></div>';
+
+								table.appendChild(li);
+							};
+
+						}, 500);
+
+					},
+					error: function(xhr, type, errorThrown) { //异常处理；
+						console.log(type);
+					}
+				});
+
+			}
+
+			mui.plusReady(function() {
+				mui('#OA_task_1').on('tap', '.mui-table-view-cell',
+					function() {
+						var id = this.getAttribute('id');
+						//						mui.toast(id);
+						//	打开订单详情页面
+						mui.openWindow({
+							url: 'orderInfo.html',
+							id: 'orderInfo.html',
+							extras: {
+								orderid: id
+							}
+						});
+					});
+			});
+
+			if(mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 500);
+
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+
+			(function($) {
+				$('#OA_task_1').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					mui.confirm('确认删除该条记录？', '骑境商城', btnArray, function(e) {
+						if(e.index == 0) {
+							//	删除操作
+							var orderid = li.id;
+							var secret_key = hex_md5(orderid + "TjKmANwABRP7csm7KqGx2uiuNHVenebx");
+							
+							mui.ajax('http://api.msyc.com.cn/api/admin/order/del', {
+								data: {
+									id: orderid,
+									secret_key: secret_key
+								},
+								dataType: 'json', //服务器返回json格式数据
+								type: 'post', //HTTP请求类型
+								timeout: 10000, //超时时间设置为10秒；
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								success: function(mdata) {
+//									console.log(secret_key);
+//									console.log(orderid);
+									if(mdata.status == "success") {
+										li.parentNode.removeChild(li);
+										mui.toast("删除成功！");
+									} else {
+										mui.toast(mdata.data.msg);
+									}
+									$.swipeoutClose(li);
+
+								},
+								error: function(xhr, type, errorThrown) {
+									//异常处理；
+									mui.toast("删除失败，请稍后再试。。");
+									console.log(type);
+								}
+							});
+
+						} else {
+							setTimeout(function() {
+								$.swipeoutClose(li);
+							}, 0);
+						}
+					});
+				});
+				var btnArray = ['确认', '取消'];
+			})(mui);
+		</script>
+	</body>
+
+</html>

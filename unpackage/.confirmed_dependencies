@@ -1,0 +1,155 @@
+{
+	"htmls/login.html": {
+		"resources": [
+			"js/md5-min.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"htmls/main.html"
+		]
+	},
+	"htmls/main.html": {
+		"resources": [
+			"htmls/pageOne.html"
+		],
+		"refer": [
+			"htmls/pageTwo.html",
+			"htmls/pageThree.html",
+			"htmls/pageOne.html"
+		]
+	},
+	"ordersMgr/ordersMgr.html": {
+		"refer": [
+			"ordersMgr/confirm_main.html",
+			"ordersMgr/agreedreturn_main.html",
+			"ordersMgr/getgoods_main.html",
+			"ordersMgr/payment_main.html",
+			"ordersMgr/postgoods_main.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"ordersMgr/confirm_main.html": {
+		"resources": [
+			"ordersMgr/confirm_sub.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/confirm_sub.html"
+		]
+	},
+	"htmls/pageOne.html": {
+		"refer": [
+			"ordersMgr/ordersMgr.html",
+			"companyMgr/companyMgr.html",
+			"goodsMgr/goodsMgr.html"
+		]
+	},
+	"ordersMgr/orderInfo.html": {
+		"resources": [
+			"js/mui.picker.js",
+			"images/aaa.jpg",
+			"css/app.css",
+			"js/mui.poppicker.js",
+			"js/city.data.js",
+			"css/mui.poppicker.css",
+			"css/mui.picker.css",
+			"js/city.data-3.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/md5-min.js"
+		]
+	},
+	"ordersMgr/confirm_sub.html": {
+		"refer": [
+			"ordersMgr/orderInfo.html",
+			"ordersMgr/a.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/md5-min.js"
+		]
+	},
+	"ordersMgr/agreedreturn_main.html": {
+		"resources": [
+			"ordersMgr/agreedreturn_sub.html"
+		],
+		"refer": [
+			"ordersMgr/agreedreturn_sub.html"
+		]
+	},
+	"ordersMgr/getgoods_main.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"ordersMgr/getgoods_sub.html"
+		],
+		"refer": [
+			"ordersMgr/getgoods_sub.html"
+		]
+	},
+	"ordersMgr/a.html": {
+		"resources": [
+			"fonts/mui.ttf"
+		]
+	},
+	"ordersMgr/payment_main.html": {
+		"resources": [
+			"ordersMgr/payment_sub.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/payment_sub.html"
+		]
+	},
+	"ordersMgr/payment_sub.html": {
+		"refer": [
+			"ordersMgr/orderInfo.html"
+		],
+		"resources": [
+			"js/md5-min.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"ordersMgr/postgoods_main.html": {
+		"resources": [
+			"ordersMgr/postgoods_sub.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/postgoods_sub.html"
+		]
+	},
+	"ordersMgr/postgoods_sub.html": {
+		"refer": [
+			"ordersMgr/orderInfo.html"
+		],
+		"resources": [
+			"js/md5-min.js"
+		]
+	},
+	"goodsMgr/goodsMgr.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
+}

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.mui-input-row label {
+				width: 20%;
+				padding: 0px;
+				line-height: 3;
+				padding-left: 15px;
+			}
+			
+			.mui-input-row label~input {
+				width: 80%;
+			}
+			
+			.mui-btn-green,
+			.mui-btn-positive,
+			.mui-btn-success {
+				border: 1px solid #41CEA9;
+				background-color: #41CEA9;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+		    <h1 class="mui-title" style="color: #FFFFFF;">登录</h1>
+		</header>
+
+		<div class="mui-content">
+
+			<div style="margin-top: 30px; text-align: center;">
+				<span class="mui-icon mui-icon-person" style="font-size: 4em; border: 2px solid gray; border-radius: 50%; color: gray;"></span>
+			</div>
+			<div class="mui-card" style="margin-top: 20px;">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label><span class="mui-icon mui-icon-person"></span></label>
+						<input id="username" type="text" class="mui-input-clear" placeholder="请输入用户名" />
+					</div>
+					<div class="mui-input-row">
+						<label><span class="mui-icon mui-icon-locked"></span></label>
+						<input id="password" type="password" class="mui-input-clear" placeholder="请输入密码" />
+					</div>
+				</form>
+			</div>
+			<div class="mui-button-row" style="margin: 10px 15px;">
+				<button id="loginBtn" type="button" class="mui-btn mui-btn-green  mui-btn-block " style="padding: 5px 0px;">登录</button>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/md5-min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			mui.plusReady(function() {
+				setStatusbar();
+
+				document.getElementById("loginBtn").addEventListener('tap', function() {
+					var loginWebview = plus.webview.currentWebview();
+					
+					var username = document.getElementById("username").value;
+					var pwd = document.getElementById("password").value;
+					
+					var password = hex_md5(pwd);
+
+					//	登录请求
+					mui.ajax('http://api.msyc.com.cn/api/admin/login', {
+						data: {
+							username: username,
+							password: password
+						},
+						dataType: 'json', //服务器返回json格式数据
+						type: 'post', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						success: function(mdata) {
+							
+							//	开发时期直接登录
+							mui.openWindow({
+									url:'main.html',
+									id:'main.html',
+									createNew:true,
+								});
+							
+							
+							if(mdata.status == "success") {
+								mui.toast("登录成功！");
+								
+								//	登录成功跳转到主页
+								mui.openWindow({
+									url:'main.html',
+									id:'main.html',
+									createNew:true,
+								});
+							} else {
+								mui.toast(mdata.data.msg);
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
+					});
+					//					mui.toast(username + password);
+				});
+
+			});
+
+			// 设置系统状态栏背景色为绿色
+			function setStatusbar() {
+				plus.navigator.setStatusBarBackground("#41CEA9");
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">订单管理</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li id="confirm" class="mui-table-view-cell">
+					<a class="mui-navigate-right">确认订单</a>
+				</li>
+				<li id="payment" class="mui-table-view-cell">
+					<a class="mui-navigate-right">确认付款</a>
+				</li>
+				<li id="postgoods" class="mui-table-view-cell">
+					<a class="mui-navigate-right">商品发货</a>
+				</li>
+				<li id="getgoods" class="mui-table-view-cell">
+					<a class="mui-navigate-right">已收货</a>
+				</li>
+				<li id="applyreturn" class="mui-table-view-cell">
+					<a class="mui-navigate-right">申请退货</a>
+				</li>
+				<li id="agreedreturn" class="mui-table-view-cell">
+					<a class="mui-navigate-right">同意退货</a>
+				</li>
+				<li id="goodsback" class="mui-table-view-cell">
+					<a class="mui-navigate-right">收到返货</a>
+				</li>
+				<li id="moneyback" class="mui-table-view-cell">
+					<a class="mui-navigate-right">已退款</a>
+				</li>
+				<li id="overorder" class="mui-table-view-cell">
+					<a class="mui-navigate-right">已归档</a>
+				</li>
+			</ul>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			
+			mui.plusReady(function(){
+				
+				document.getElementById("confirm").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'confirm_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("payment").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'payment_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("postgoods").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'postgoods_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("getgoods").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'getgoods_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("applyreturn").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'applyreturn_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("agreedreturn").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'agreedreturn_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("goodsback").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goodsback_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("moneyback").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'moneyback_main.html',
+						createNew:true,
+					});
+				});
+				document.getElementById("overorder").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'overorder_main.html',
+						createNew:true,
+					});
+				});
+//				confirm,payment,postgoods,getgoods,applyreturn,agreedreturn,goodsback,moneyback,overorder
+				
+				
+			});
+		</script>
+	</body>
+
+</html>

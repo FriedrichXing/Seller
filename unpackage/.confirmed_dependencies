@@ -4,7 +4,8 @@
 			"js/md5-min.js",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"images/iLogo.png"
 		],
 		"refer": [
 			"htmls/main.html"
@@ -12,7 +13,8 @@
 	},
 	"htmls/main.html": {
 		"resources": [
-			"htmls/pageOne.html"
+			"htmls/pageOne.html",
+			"css/mui.min.css"
 		],
 		"refer": [
 			"htmls/pageTwo.html",
@@ -26,7 +28,12 @@
 			"ordersMgr/agreedreturn_main.html",
 			"ordersMgr/getgoods_main.html",
 			"ordersMgr/payment_main.html",
-			"ordersMgr/postgoods_main.html"
+			"ordersMgr/postgoods_main.html",
+			"ordersMgr/applyreturn_main.html",
+			"ordersMgr/goodsback_main.html",
+			"ordersMgr/payment_main2.html",
+			"ordersMgr/moneyback_main.html",
+			"ordersMgr/overorder_main.html"
 		],
 		"resources": [
 			"js/mui.min.js",
@@ -42,14 +49,21 @@
 			"css/mui.min.css"
 		],
 		"refer": [
-			"ordersMgr/confirm_sub.html"
+			"ordersMgr/confirm_sub.html",
+			"ordersMgr/applyreturn_sub.html"
 		]
 	},
 	"htmls/pageOne.html": {
 		"refer": [
 			"ordersMgr/ordersMgr.html",
 			"companyMgr/companyMgr.html",
-			"goodsMgr/goodsMgr.html"
+			"goodsMgr/goodsMgr.html",
+			"newsMgr/newsMgr.html",
+			"joinInMgr/joinInMgr.html"
+		],
+		"resources": [
+			"css/iconfont.css",
+			"fonts/iconfont.ttf"
 		]
 	},
 	"ordersMgr/orderInfo.html": {
@@ -65,7 +79,8 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css",
-			"js/md5-min.js"
+			"js/md5-min.js",
+			"images/iLogo.png"
 		]
 	},
 	"ordersMgr/confirm_sub.html": {
@@ -77,7 +92,9 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css",
-			"js/md5-min.js"
+			"js/md5-min.js",
+			"css/iconfont.css",
+			"fonts/iconfont.ttf"
 		]
 	},
 	"ordersMgr/agreedreturn_main.html": {
@@ -123,7 +140,9 @@
 			"js/md5-min.js",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"css/iconfont.css",
+			"fonts/iconfont.ttf"
 		]
 	},
 	"ordersMgr/postgoods_main.html": {
@@ -142,7 +161,12 @@
 			"ordersMgr/orderInfo.html"
 		],
 		"resources": [
-			"js/md5-min.js"
+			"js/md5-min.js",
+			"js/mui.min.js",
+			"css/iconfont.css",
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"fonts/iconfont.ttf"
 		]
 	},
 	"goodsMgr/goodsMgr.html": {
@@ -150,6 +174,185 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css"
+		],
+		"refer": [
+			"goodsMgr/goodsCheck.html",
+			"goodsMgr/goodsAdd.html",
+			"goodsMgr/goodsEdit.html",
+			"goodsMgr/goods_all_main.html",
+			"goodsMgr/goods_type2.html",
+			"goodsMgr/goods_type.html"
+		]
+	},
+	"ordersMgr/applyreturn_main.html": {
+		"resources": [
+			"ordersMgr/applyreturn_sub.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/applyreturn_sub.html"
+		]
+	},
+	"ordersMgr/applyreturn_sub.html": {
+		"resources": [
+			"js/md5-min.js",
+			"css/iconfont.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"fonts/iconfont.ttf"
+		]
+	},
+	"ordersMgr/goodsback_sub.html": {
+		"resources": [
+			"js/md5-min.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/orderInfo.html"
+		]
+	},
+	"ordersMgr/goodsback_main.html": {
+		"resources": [
+			"ordersMgr/goodsback_sub.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/goodsback_sub.html"
+		]
+	},
+	"ordersMgr/payment_main2.html": {
+		"resources": [
+			"ordersMgr/confirm_sub.html"
+		],
+		"refer": [
+			"ordersMgr/confirm_sub.html"
+		]
+	},
+	"ordersMgr/moneyback_main.html": {
+		"resources": [
+			"ordersMgr/moneyback_sub.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/moneyback_sub.html"
+		]
+	},
+	"ordersMgr/overorder_main.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"ordersMgr/overorder_sub.html",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"ordersMgr/overorder_sub.html"
+		]
+	},
+	"ordersMgr/overorder_sub.html": {
+		"resources": [
+			"js/md5-min.js",
+			"css/iconfont.css",
+			"fonts/iconfont.ttf"
+		],
+		"refer": [
+			"ordersMgr/orderInfo.html"
+		]
+	},
+	"joinInMgr/joinInMgr.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"newsMgr/newsMgr.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"ordersMgr/moneyback_sub.html": {
+		"resources": [
+			"js/md5-min.js",
+			"css/iconfont.css",
+			"fonts/iconfont.ttf"
+		]
+	},
+	"goodsMgr/goodsEdit.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/iLogo.png",
+			"js/mui.picker.js",
+			"js/mui.poppicker.js",
+			"css/mui.poppicker.css",
+			"css/mui.picker.css",
+			"js/goodstype.data.js",
+			"images/plus.png"
+		]
+	},
+	"goodsMgr/goods_all_main.html": {
+		"resources": [
+			"goodsMgr/goods_all_sub.html"
+		],
+		"refer": [
+			"goodsMgr/goods_all_sub.html"
+		]
+	},
+	"goodsMgr/goods_all_sub.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"goodsMgr/goodsEdit.html"
+		]
+	},
+	"goodsMgr/goods_add_type.html": {
+		"resources": [
+			"js/mui.picker.js",
+			"js/mui.poppicker.js",
+			"js/addgoodstype.data.js",
+			"css/mui.poppicker.css",
+			"css/mui.picker.css",
+			"js/mui.min.js",
+			"images/iLogo.png",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"goodsMgr/goods_type.html": {
+		"refer": [
+			"goodsMgr/goods_add_type.html"
+		],
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"goodsMgr/goodsAdd.html": {
+		"resources": [
+			"js/mui.picker.js",
+			"images/iLogo.png",
+			"js/mui.poppicker.js",
+			"js/goodstype.data.js",
+			"css/mui.poppicker.css",
+			"css/mui.picker.css",
+			"images/plus.png"
 		]
 	}
 }

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.title {
+				margin: 8px 15px;
+			}
+			#add_brand{
+				width: 90%;
+				display: block;
+				margin: 0px auto;
+				height: 40px;
+				padding: 0px;
+				font-size: 15px;
+				background-color: #41CEA9;
+				border: solid 1px #41CEA9;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">品牌类型</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<ul id="brand_ul" class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">金翌</a>
+						<div class="mui-collapse-content">
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">鑫洋</a>
+						<div class="mui-collapse-content">
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">其他</a>
+						<div class="mui-collapse-content">
+							
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<p class="title">添加品牌类型</p>
+			<button id="add_brand" type="button" class="mui-btn mui-btn-blue mui-btn-block">添加品牌类型</button>
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			mui.plusReady(function() {
+				document.getElementById("add_brand").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goods_add_brand.html',
+						createNew:true
+					})
+				})
+			})
+		</script>
+	</body>
+
+</html>

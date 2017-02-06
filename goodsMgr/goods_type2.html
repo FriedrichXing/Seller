@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">商品类别</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<!--<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">电动车</a>
+						<div class="mui-collapse-content">
+
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">摩托车</a>
+						<div class="mui-collapse-content">
+							<p>哈哈哈哈</p>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">新能源汽车</a>
+						<div class="mui-collapse-content">
+							
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">配件</a>
+						<div class="mui-collapse-content">
+							
+						</div>
+					</li>-->
+				</ul>
+
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			var local_data = {
+				"data": [{
+					"first_class": "电动车",
+					"second_class": "二轮,三轮"
+				}, {
+					"first_class": "摩托车",
+					"second_class": "二轮,三轮,四轮"
+				}, {
+					"first_class": "新能源汽车",
+					"second_class": "五轮,六轮,七轮"
+				}, {
+					"first_class": "配件",
+					"second_class": "八轮,九轮"
+				}]
+			}
+
+			//			mui.toast(local_data.data[0].first_class);
+			mui.plusReady(function() {
+
+				for(var i = 0; i < local_data.data.length; i++) {
+					var table = document.body.querySelector('.mui-table-view');
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell mui-collapse';
+					
+					li.innerHTML = '<a class="mui-navigate-right" href="#">' + local_data.data[i].first_class +
+						'</a>' +
+						'<div class="mui-collapse-content">' +
+						'<ul class="mui-table-view aa" style="margin: -5px 0px -5px 0px;">'+
+						'</ul>'+
+						'</div>';
+
+					table.appendChild(li);
+
+
+				}
+				
+				//	给ul相应的id  然后往里面添加数据
+				for (var j = 0; j < 3; j++) {
+								var table2 = document.body.querySelector('.aa');
+								var li2 = document.createElement('li');
+								li2.className = 'mui-table-view-cell';
+								li2.innerHTML = j;
+								table2.appendChild(li2);
+						}
+				
+			})
+		</script>
+	</body>
+
+</html>

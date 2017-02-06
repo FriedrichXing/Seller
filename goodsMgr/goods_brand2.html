@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.title {
+				margin: 8px 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">品牌类型</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<ul id="brand_ul" class="mui-table-view">
+					<!--<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">电动车</a>
+						<div class="mui-collapse-content">
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">摩托车</a>
+						<div class="mui-collapse-content">
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">新能源汽车</a>
+						<div class="mui-collapse-content">
+							
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">配件</a>
+						<div class="mui-collapse-content">
+							
+						</div>
+					</li>-->
+				</ul>
+			</div>
+
+			<p class="title">添加品牌类型</p>
+			
+
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			var local_data = {
+				"data": [{
+					"id": 1,
+					"brand_name": "金翌",
+					"paixu": 1
+				}, {
+					"id": 2,
+					"brand_name": "鑫洋",
+					"paixu": 2
+				}, {
+					"id": 3,
+					"brand_name": "其他",
+					"paixu": 3
+				}]
+			}
+
+			//			mui.toast(local_data.data[0].first_class);
+			mui.plusReady(function() {
+				var table = document.body.querySelector('.mui-table-view');
+				var p = document.createElement('p');
+				p.innerHTML = "222";
+				for(var i = 0; i < local_data.data.length; i++) {
+
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell mui-collapse';
+					//	需要更改
+					li.id = "li" + i;
+
+					li.innerHTML = '<a class="mui-navigate-right">' + local_data.data[i].brand_name +
+						'</a>' +
+						'<div class="mui-collapse-content">' +
+						//						'<span class="mui-icon mui-icon-plusempty" style="border: solid 1px #E3E2E5;border-radius: 3px;color: #E3E2E5;"></span>' +
+						'</div>';
+
+					table.appendChild(li);
+
+				}
+
+				//				mui('#brand_ul').on('tap','li',function(){
+				//					var id = this.getAttribute('id');
+				//					mui.toast('222');
+				//				})
+
+			})
+		</script>
+	</body>
+
+</html>

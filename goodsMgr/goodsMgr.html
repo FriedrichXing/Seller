@@ -6,6 +6,12 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+			body, .mui-content{
+				background-color: #FFFFFF;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -13,10 +19,66 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
 			<h1 class="mui-title" style="color: #FFFFFF;">商品管理</h1>
 		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<!--<li id="check_goods" class="mui-table-view-cell">
+					<a class="mui-navigate-right">查看商品</a>
+				</li>-->
+				<li id="edit_good" class="mui-table-view-cell">
+					<a class="mui-navigate-right">商品编辑</a>
+				</li>
+				<li id="add_good" class="mui-table-view-cell">
+					<a class="mui-navigate-right">添加商品</a>
+				</li>
+				<li id="goods_type" class="mui-table-view-cell">
+					<a class="mui-navigate-right">商品类别管理</a>
+				</li>
+				<li id="goods_brand" class="mui-table-view-cell">
+					<a class="mui-navigate-right">品牌类型管理</a>
+				</li>
+			</ul>
+		</div>
 		
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			mui.plusReady(function(){
+//				document.getElementById("check_goods").addEventListener('tap',function(){
+//					mui.openWindow({
+//						url:'goodsCheck.html',
+//						createNew:true
+//					})
+//				})
+				
+				document.getElementById("edit_good").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goods_all_main.html',
+						createNew:true
+					})
+				})
+				
+				document.getElementById("add_good").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goodsAdd.html',
+						createNew:true
+					})
+				})
+				
+				document.getElementById("goods_type").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goods_type.html',
+						createNew:true
+					})
+				})
+				
+				document.getElementById("goods_brand").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goods_brand.html',
+						createNew:true
+					})
+				})
+				
+			})
 		</script>
 	</body>
 

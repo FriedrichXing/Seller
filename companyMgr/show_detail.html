@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+			img{
+				width: 100%;
+			}
+			body{
+				background-color: #FFFFFF;
+			}
+			.mui-content{
+				background-color: #FFFFFF;
+			}
+			#content{
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 id="content_title" class="mui-title" style="color: #FFFFFF;">默认文字</h1>
+		</header>
+		<div class="mui-content">
+		    <div id="content"></div>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//	页面ajax请求结束再进行展示
+			window.onload = function() {
+				mui.ajax('http://api.msyc.com.cn/api/jinyi/' + localStorage.getItem('content_title'), {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(mdata) {
+						var local_title = localStorage.getItem('content_title');
+						if(local_title == 'content'){
+							document.getElementById("content_title").innerText = '企业介绍';
+						}else if(local_title == 'culture'){
+							document.getElementById("content_title").innerText = '企业文化';
+						}else if(local_title == 'addr'){
+							document.getElementById("content_title").innerText = '企业地址';
+						}
+						
+						document.getElementById("content").innerHTML = mdata.data[0].content;
+						
+						
+					},
+					error: function(xhr, type, errorThrown) { //异常处理；
+						console.log(type);
+					}
+				});
+				mui.plusReady(function() {
+					//关闭等待框
+					plus.nativeUI.closeWaiting();
+					//显示当前页面
+					mui.currentWebview.show();
+					
+
+				});
+			}
+		</script>
+	</body>
+
+</html>

@@ -6,6 +6,15 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		
+		<style  type="text/css">
+			.mui-table-view-cell:after{
+				background-color: #EFEFF4;
+				height: 1px;
+				left: 0;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -39,9 +48,9 @@
 			 */
 			function pulldownRefresh() {
 				setTimeout(function() {
-					var table = document.body.querySelector('.mui-table-view');
-					pullupRefresh();
-					mui.toast("刷新成功！")
+					var view = plus.webview.getWebviewById('moneyback_sub.html');
+					view.reload();
+					mui.toast("刷新中请稍候...");
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
 				}, 500);
 			}
@@ -58,16 +67,26 @@
 					type: 'get', //HTTP请求类型
 					timeout: 10000, //超时时间设置为10秒；
 					success: function(mdata) {
-						count2 = mdata.data.length % 3 + 1;
+						if(mdata.data == "") {
+							mui.toast("该分类下暂时无订单！")
+						}
+						count2 = mdata.data.length / 4 + 1;
 						setTimeout(function() {
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > count2)); //参数为true代表没有更多数据了。
 							var table = document.body.querySelector('.mui-table-view');
 							var cells = document.body.querySelectorAll('.mui-table-view-cell');
 
-							for(var i = cells.length, len = i + 5; i < len; i++) {
+							for(var i = cells.length, len = i + 4; i < len; i++) {
 								var li = document.createElement('li');
 								li.className = 'mui-table-view-cell';
 								li.id = mdata.data[i].orderid;
+
+								var p = document.createElement('p');
+								p.style.width = "100%";
+								p.style.height = "15px";
+								p.style.borderTop = "solid 1px #41CEA9";
+								p.style.backgroundColor = "#EFEFF4";
+								p.style.marginBottom  = "0px";
 
 								li.innerHTML = '<div class="mui-slider-right mui-disabled">' +
 									'<a class="mui-btn mui-btn-red">删除</a>' +
@@ -75,16 +94,29 @@
 									'<div class="mui-slider-handle">' +
 									'<div class="mui-table">' +
 									'<div class="mui-table-cell mui-col-xs-10">' +
-									'<p class="mui-h5 mui-ellipsis"><span>用户名：<span>' + mdata.data[i].username +
-									'</span></span></p>' +
-									'<p class="mui-h5 mui-ellipsis"><span>订单编号：<span>' + mdata.data[i].ordernum +
-									'</span></span></p>' +
-									'<p class="mui-h5 mui-ellipsis"><span>联系人/电话：<span>' + mdata.data[i].truename + '/' + mdata.data[i].telephone +
-									'</span></span></p>' +
-									'<p class="mui-h5 mui-ellipsis"><span>订单状态：<span style="color:#41CEA9;font-weight:bold;">' + mdata.data[i].status +
-									'</span></span></p>' + '</div></div></div>';
+									'<p class="mui-h5 mui-ellipsis"><span class = "iconfont icon-account1"></span>&nbsp;&nbsp;&nbsp;<span>用户名：</span><span>' + mdata.data[i].username +
+									'</span></p>' +
+									'<p class="mui-h5 mui-ellipsis"><span class = "iconfont icon-form"></span>&nbsp;&nbsp;&nbsp;<span>订单编号：</span><span>' + mdata.data[i].ordernum +
+									'</span></p>' +
+									'<p class="mui-h5 mui-ellipsis"><span class = "iconfont icon-phone"></span>&nbsp;&nbsp;&nbsp;<span>联系人/电话：</span><span>' + mdata.data[i].truename + '/' + mdata.data[i].telephone +
+									'</span></p>' +
+									'<p class="mui-h5 mui-ellipsis"><span class = "iconfont icon-success"></span>&nbsp;&nbsp;&nbsp;<span>订单状态：</span><span style="color:#41CEA9;font-weight:bold;">' + mdata.data[i].status +
+									'</span></p>' + 
+									'<p style="width: 100%;height: 1px;background-color: #E3E2E5;margin:5px auto;"></p>'+
+									'<div><img src="'+mdata.data[i].attrstr.picurl+
+									'" style="width: 45px;height: 45px;float: left;"/>'+
+									'<p class="mui-h5 mui-ellipsis" style="width:75%;float: left;margin: 0px 0px 0px 10px;">'+mdata.data[i].attrstr.title+
+									'</p><br />'+
+									'<p class="mui-h5 mui-ellipsis" style="float: left;margin: 0px 0px 0px 10px;">'+
+									'<span>数量：</span><span style="">'+mdata.data[i].attrstr.num+
+									'</span>&nbsp;&nbsp;&nbsp;&nbsp;'+
+									'<span>订单金额：<span>￥</span></span><span>'+mdata.data[i].amount+
+									'</span></p>'+
+									'</div>'+
+									'</div></div></div>';
 
 								table.appendChild(li);
+								table.appendChild(p);
 							};
 
 						}, 500);
@@ -107,7 +139,8 @@
 							url: 'orderInfo.html',
 							id: 'orderInfo.html',
 							extras: {
-								orderid: id
+								orderid: id,
+								whichPage:8
 							}
 						});
 					});

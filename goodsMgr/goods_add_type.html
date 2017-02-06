@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.picker.css" />
+		<link rel="stylesheet" href="../css/mui.poppicker.css" />
+		
+		<style type="text/css">
+			.title{
+				margin: 8px 15px;	
+			}
+			.span_line_height {
+				line-height: 40px;
+			}
+			#add_type{
+				width: 90%;
+				display: block;
+				margin: 20px auto;
+				height: 40px;
+				padding: 0px;
+				font-size: 15px;
+				background-color: #41CEA9;
+				border: solid 1px #41CEA9;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">添加商品类别</h1>
+		</header>
+		
+		<div class="mui-content">
+		    <!--分类详情-->
+			<p class="title">分类详情</p>
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>所属分类</label>
+					<span id="fenlei">
+					<span id="class_one" class="span_line_height">选择商品分类</span>&nbsp;&nbsp;<span id="class_two"></span>
+					</span>
+				</div>
+				<div class="mui-input-row">
+					<label>隐藏类别</label>
+					<span id="stock_warning" class="span_line_height">显示</span>
+				</div>
+				<div class="mui-input-row">
+					<label>类别名称</label>
+					<input id="class_name" type="text" class="mui-input-clear" placeholder="请输入类别名称（非必填）">
+				</div>
+				<div class="mui-input-row">
+					<label>跳转链接</label>
+					<input id="linkurl" type="text" class="mui-input-clear" placeholder="请输入跳转链接（非必填）">
+				</div>
+				<div class="mui-input-row">
+					<label>排列顺序</label>
+					<input id="orderid" type="text" class="mui-input-clear" placeholder="请输入排列顺序（非必填）">
+				</div>
+				
+			</form>
+			<!--商品缩略图-->
+			<ul class="mui-table-view" style="margin-top: 5px;">
+				<li id="changeImg" class="mui-table-view-cell mui-media" style="padding: 8px 15px;">
+					<a>
+						<p style="float: left;line-height: 42px;">点击更换类别缩略图</p>
+						<img id="picurl" class="mui-media-object mui-pull-right" src="../images/iLogo.png">
+					</a>
+				</li>
+			</ul>
+			
+			<button id="add_type" type="button" class="mui-btn mui-btn-blue mui-btn-block">确认添加</button>
+		</div>
+		
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/addgoodstype.data.js" ></script>
+		<script type="text/javascript" src="../js/mui.picker.js"></script>
+		<script type="text/javascript" src="../js/mui.poppicker.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				//	选择拍照或者相册
+					document.getElementById('changeImg').addEventListener('tap', function() {
+						if(mui.os.plus) {
+							var a = [{
+								title: "拍照"
+							}, {
+								title: "从手机相册选择"
+							}];
+							plus.nativeUI.actionSheet({
+								title: "上传类别缩略图",
+								cancel: "取消",
+								buttons: a
+							}, function(b) { /*actionSheet 按钮点击事件*/
+								switch(b.index) {
+									case 0:
+										break;
+									case 1:
+										cameraImg();
+										break;
+									case 2:
+										albumImg();
+										break;
+									default:
+										break;
+								}
+							})
+						}
+					}, false);
+					
+					document.getElementById("add_type").addEventListener('tap', function() {
+						var btnArray = ['否', '是'];
+						mui.confirm('确认添加？', '骑境商城', btnArray, function(e) {
+							if(e.index == 1) {
+							//	调用添加商品类别接口
+//							mui.back();
+							var chosen_class_name;
+							if(document.getElementById("class_two").innerHTML == ''){
+								chosen_class_name = document.getElementById("class_one").innerHTML;
+							}else{
+								chosen_class_name = document.getElementById("class_two").innerHTML;
+							}
+
+
+							var is_show = document.getElementById("stock_warning").innerHTML;
+							var class_name = document.getElementById("class_name").value;
+							var linkurl = document.getElementById("linkurl").value;
+							var orderid = document.getElementById("orderid").value;
+							var img_data = localStorage.getItem('good_type_img');
+							
+							console.log(img_data);
+							
+							if(document.getElementById("class_one").innerHTML == "选择商品分类"){
+								mui.toast("请选择商品分类");
+							} else if(img_data == null || img_data == ''){
+								mui.toast("请选择品牌缩略图");
+							}
+							
+
+//							mui.ajax('http://api.msyc.com.cn/api/admin/login', {
+//								data: {
+//									username: username,
+//									password: password
+//								},
+//								dataType: 'json', //服务器返回json格式数据
+//								type: 'post', //HTTP请求类型
+//								timeout: 10000, //超时时间设置为10秒；
+//								headers: {
+//									'Content-Type': 'application/json'
+//								},
+//								success: function(mdata) {
+//
+//								},
+//								error: function(xhr, type, errorThrown) {
+//									//异常处理；
+//									console.log(type);
+//								}
+//							});
+
+						} else {
+								mui.toast("取消...");
+							}
+						});
+
+				});
+					
+			});
+			
+			//	相册获取照片
+			var imgArray = new Array();
+			var newImgbase;
+
+			function albumImg() {
+
+				plus.gallery.pick(
+					function(path) {
+						var img_my = document.getElementById("picurl");
+						img_my.src = path;
+
+						img_my.onload = function() {
+							var data = getBase64Image(img_my);
+							//							console.log("data:"+data);
+							newImgbase = data.split(",")[1];
+							localStorage.setItem('good_type_img',newImgbase);
+							//							console.log("newImgbase:"+newImgbase);
+							imgArray.push(newImgbase);
+//							console.log(newImgbase);
+						}
+					},
+					function(e) {
+						mui.toast('取消选择');
+					});
+			}
+
+			//base64编码    
+			function getBase64Image(img) {
+				var canvas = document.createElement("canvas"); //创建canvas DOM元素，并设置其宽高和图片一样
+				canvas.width = img.width;
+				canvas.height = img.height;
+				var ctx = canvas.getContext("2d");
+				ctx.drawImage(img, 0, 0, img.width, img.height); //使用画布画图
+				var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase(); //动态截取图片的格式
+				var dataURL = canvas.toDataURL("image/" + ext); //返回的是一串Base64编码的URL并指定格式
+				return dataURL;
+			}
+			
+			//将图片压缩转成base64 
+        function getBase64Image2(img) {
+            var canvas = document.createElement("canvas");
+            var width = img.width;
+            var height = img.height;
+            // calculate the width and height, constraining the proportions
+            if (width > height) {
+                if (width > 100) {
+                    height = Math.round(height *= 100 / width);
+                    width = 100;
+                }
+            } else {
+                if (height > 100) {
+                    width = Math.round(width *= 100 / height);
+                    height = 100;
+                }
+            }
+            canvas.width = width;   /*设置新的图片的宽度*/
+            canvas.height = height; /*设置新的图片的长度*/
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height); /*绘图*/
+            var dataURL = canvas.toDataURL("image/png", 0.8);
+            return dataURL.replace("data:image/png;base64,", "");
+        }
+
+			//	相机获取照片
+			function cameraImg() {
+				//				mui.toast("相机获取");
+				var c = plus.camera.getCamera();
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+						uploadHead(s); /*上传图片*/
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/head.png"
+				})
+			}
+
+			function uploadHead(imgPath) {
+				console.log("imgPath = " + imgPath);
+				var mainImage = document.getElementById("picurl");
+				mainImage.src = imgPath;
+				mainImage.style.width = "42px";
+				mainImage.style.height = "?";
+
+				var image = new Image();
+				image.src = imgPath;
+				image.onload = function() {
+					var imgData = getBase64Image2(image);
+//					newImgbase = imgData.split(",")[1];
+					console.log(imgData);
+//					mui.toast(imgData);
+					localStorage.setItem('good_type_img',imgData);
+				}
+			}
+			
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					
+					//	商品分类选择
+					var classPicker = new $.PopPicker({
+						layer: 2
+					});
+					classPicker.setData(goodstypeData);
+					var showClassPickerButton = doc.getElementById('fenlei');
+					var class_one = doc.getElementById('class_one');
+					var class_two = doc.getElementById('class_two');
+					showClassPickerButton.addEventListener('tap', function(event) {
+						classPicker.show(function(items) {
+							class_one.innerHTML = items[0].text;
+							if(items[1].text == null){
+								class_two.innerHTML = '';
+							}else{
+								class_two.innerHTML = items[1].text;
+							}
+							
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+					//	隐藏类别选择
+					var stock_warningPicker = new $.PopPicker();
+					stock_warningPicker.setData([{
+						value: '1',
+						text: '显示'
+					}, {
+						value: '2',
+						text: '隐藏'
+					}]);
+					var showstock_warningPicker = doc.getElementById('stock_warning');
+					var stock_warning = doc.getElementById('stock_warning');
+					showstock_warningPicker.addEventListener('tap', function(event) {
+						stock_warningPicker.show(function(items) {
+							stock_warning.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+				});
+			})(mui, document);
+		</script>
+	</body>
+
+</html>

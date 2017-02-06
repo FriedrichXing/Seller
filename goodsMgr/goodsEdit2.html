@@ -1,0 +1,413 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.picker.css" />
+		<link rel="stylesheet" href="../css/mui.poppicker.css" />
+
+		<style type="text/css">
+			.title {
+				margin: 8px 15px;
+			}
+			
+			.span_line_height {
+				line-height: 40px;
+			}
+			#add_img{
+				border: solid 1px #EFEFF4;
+				border-radius: 5px;
+				width: 22%;
+				height: 22%;
+				margin: 0.5%;
+			}
+			#imgs_holder{
+				padding: 10px 15px 10px 15px;
+				margin-bottom: 10px;
+			}
+			#submit{
+				width: 90%;
+				height: 45px;
+				line-height: 45px;
+				padding: 0px;
+				margin: 0px auto 10px auto;
+				background-color: #41CEA9;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">编辑商品</h1>
+		</header>
+		<div class="mui-content">
+			<!--商品缩略图-->
+			<p class="title">商品缩略图</p>
+			<ul class="mui-table-view">
+				<li id="changeImg" class="mui-table-view-cell mui-media" style="padding: 8px 15px;">
+					<a>
+						<p style="float: left;line-height: 42px;">点击更换商品缩略图</p>
+						<img id="picurl" class="mui-media-object mui-pull-right" src="../images/iLogo.png">
+					</a>
+				</li>
+			</ul>
+
+			<!--商品详情-->
+			<p class="title">商品详情</p>
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>商品分类</label>
+					<span id="fenlei">
+					<span id="class_one" class="span_line_height">摩托车</span>&nbsp;&nbsp;<span id="class_two"></span>
+					</span>
+				</div>
+				<div class="mui-input-row">
+					<label>商品品牌</label>
+					<span id="good_brand" class="span_line_height">金翌</span>
+				</div>
+				<div class="mui-input-row">
+					<label>运费承担</label>
+					<span id="cost_resp" class="span_line_height">卖家承担</span>
+				</div>
+				<div class="mui-input-row">
+					<label>库存警告</label>
+					<span id="stock_warning" class="span_line_height">是</span>
+				</div>
+				<div class="mui-input-row">
+					<label>库存数量</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入库存数量">
+				</div>
+				<div class="mui-input-row">
+					<label>警告数量</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入警告数量">
+				</div>
+				<div class="mui-input-row">
+					<label>商品名称</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品名称">
+				</div>
+				<div class="mui-input-row">
+					<label>商品颜色</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品颜色">
+				</div>
+				<div class="mui-input-row">
+					<label>商品规格</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品规格">
+				</div>
+				<div class="mui-input-row">
+					<label>市场价</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品市场价">
+				</div>
+				<div class="mui-input-row">
+					<label>销售价</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品销售价">
+				</div>
+				<div class="mui-input-row">
+					<label>一级价</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品销售价">
+				</div>
+				<div class="mui-input-row">
+					<label>二级价</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品销售价">
+				</div>
+				<div class="mui-input-row">
+					<label>三级价</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品销售价">
+				</div>
+				<div class="mui-input-row">
+					<label>四级价</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品销售价">
+				</div>
+				<div class="mui-input-row">
+					<label>五级价</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品销售价">
+				</div>
+				<div class="mui-input-row">
+					<label>商品编号</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品编号">
+				</div>
+				<div class="mui-input-row">
+					<label>商品重量</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品重量">
+				</div>
+				<div class="mui-input-row">
+					<label>返点积分</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入返点积分">
+				</div>
+				<div class="mui-input-row">
+					<label>点击次数</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入返点积分">
+				</div>
+				<div class="mui-input-row">
+					<label>排列排序</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入返点积分">
+				</div>
+				<div class="mui-input-row">
+					<label>商品摘要</label>
+					<input type="text" class="mui-input-clear" placeholder="请输入商品摘要">
+				</div>
+			</form>
+			
+			<!--商品图片-->
+			<p class="title">商品图片</p>
+			<form id="imgs_holder" class="mui-input-group">
+				<img id="add_img" src="../images/plus.png" />
+				<!--<img id="add_img" src="../images/plus.png" />
+				<img id="add_img" src="../images/plus.png" />
+				<img id="add_img" src="../images/plus.png" />
+				<img id="add_img" src="../images/plus.png" />-->
+			</form>
+			
+			<button id="submit" type="button" class="mui-btn mui-btn-green mui-btn-block">确认</button>
+			
+
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/goodstype.data.js" ></script>
+		<script type="text/javascript" src="../js/mui.picker.js"></script>
+		<script type="text/javascript" src="../js/mui.poppicker.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			//	页面ajax请求结束再进行展示
+			window.onload = function() {
+				mui.ajax('http://api.msyc.com.cn/api/goods/' + localStorage.getItem('goodid'), {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(mdata) {
+						//						mui.toast(localStorage.getItem('goodid'));
+						document.getElementById("picurl").src = mdata.data[0].picurl;
+					},
+					error: function(xhr, type, errorThrown) { //异常处理；
+						console.log(type);
+					}
+				});
+				mui.plusReady(function() {
+					//关闭等待框
+					plus.nativeUI.closeWaiting();
+					//显示当前页面
+					mui.currentWebview.show();
+
+					//	选择拍照或者相册
+					document.getElementById('changeImg').addEventListener('tap', function() {
+						if(mui.os.plus) {
+							var a = [{
+								title: "拍照"
+							}, {
+								title: "从手机相册选择"
+							}];
+							plus.nativeUI.actionSheet({
+								title: "上传产品缩略图",
+								cancel: "取消",
+								buttons: a
+							}, function(b) { /*actionSheet 按钮点击事件*/
+								switch(b.index) {
+									case 0:
+										break;
+									case 1:
+										cameraImg();
+										break;
+									case 2:
+										albumImg();
+										break;
+									default:
+										break;
+								}
+							})
+						}
+					}, false);
+				});
+			}
+
+			//	相册获取照片
+			var imgArray = new Array();
+			var newImgbase;
+
+			function albumImg() {
+
+				plus.gallery.pick(
+					function(path) {
+						var img_my = document.getElementById("picurl");
+						img_my.src = path;
+
+						img_my.onload = function() {
+							var data = getBase64Image(img_my);
+							//							console.log("data:"+data);
+							newImgbase = data.split(",")[1];
+							localStorage.setItem('newImgbase',newImgbase);
+							//							console.log("newImgbase:"+newImgbase);
+							imgArray.push(newImgbase);
+//							console.log(newImgbase);
+						}
+					},
+					function(e) {
+						mui.toast('取消选择');
+					});
+			}
+
+			//base64编码    
+			function getBase64Image(img) {
+				var canvas = document.createElement("canvas"); //创建canvas DOM元素，并设置其宽高和图片一样
+				canvas.width = img.width;
+				canvas.height = img.height;
+				var ctx = canvas.getContext("2d");
+				ctx.drawImage(img, 0, 0, img.width, img.height); //使用画布画图
+				var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase(); //动态截取图片的格式
+				var dataURL = canvas.toDataURL("image/" + ext); //返回的是一串Base64编码的URL并指定格式
+				return dataURL;
+			}
+			
+			function getBase64Image2(img) { 
+            var canvas = document.createElement("canvas"); 
+            var width = img.width; 
+            var height = img.height; 
+            // calculate the width and height, constraining the proportions 
+            if (width > height) { 
+                if (width > 100) { 
+                    height = Math.round(height *= 100 / width); 
+                    width = 100; 
+                } 
+            } else { 
+                if (height > 100) { 
+                    width = Math.round(width *= 100 / height); 
+                    height = 100; 
+                } 
+            } 
+            canvas.width = width;   /*设置新的图片的宽度*/ 
+            canvas.height = height; /*设置新的图片的长度*/ 
+            var ctx = canvas.getContext("2d"); 
+            ctx.drawImage(img, 0, 0, width, height); /*绘图*/ 
+            var dataURL = canvas.toDataURL("image/png", 0.8); 
+            return dataURL.replace("data:image/png;base64,", ""); 
+        }
+
+			//	相机获取照片
+			function cameraImg() {
+				//				mui.toast("相机获取");
+				var c = plus.camera.getCamera();
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						var s = entry.toLocalURL() + "?version=" + new Date().getTime();
+						uploadHead(s); /*上传图片*/
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/head.png"
+				})
+			}
+
+			function uploadHead(imgPath) {
+				console.log("imgPath = " + imgPath);
+				var mainImage = document.getElementById("picurl");
+				mainImage.src = imgPath;
+				mainImage.style.width = "42px";
+				mainImage.style.height = "?";
+
+				var image = new Image();
+				image.src = imgPath;
+				image.onload = function() {
+					var imgData = getBase64Image2(image);
+//					newImgbase = data.split(",")[1];
+					localStorage.setItem('newImgbase',imgData);
+				}
+			}
+
+//			console.log("测试base64文件名-----------------------------------------" + localStorage.getItem('newImgbase'));
+
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					
+					//	商品分类选择
+					var classPicker = new $.PopPicker({
+						layer: 2
+					});
+					classPicker.setData(goodstypeData);
+					var showClassPickerButton = doc.getElementById('fenlei');
+					var class_one = doc.getElementById('class_one');
+					var class_two = doc.getElementById('class_two');
+					showClassPickerButton.addEventListener('tap', function(event) {
+						classPicker.show(function(items) {
+							class_one.innerHTML = items[0].text;
+							class_two.innerHTML = items[1].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+
+					//	商品品牌选择
+					var good_brandPicker = new $.PopPicker();
+					good_brandPicker.setData([{
+						value: '1',
+						text: '金翌'
+					}, {
+						value: '2',
+						text: '鑫洋'
+					}, {
+						value: '3',
+						text: '其他'
+					}]);
+					var showgood_brandPicker = doc.getElementById('good_brand');
+					var good_brand = doc.getElementById('good_brand');
+					showgood_brandPicker.addEventListener('tap', function(event) {
+						good_brandPicker.show(function(items) {
+							good_brand.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+					//	运费承担选择
+					var cost_respPicker = new $.PopPicker();
+					cost_respPicker.setData([{
+						value: '1',
+						text: '买家承担'
+					}, {
+						value: '2',
+						text: '卖家承担'
+					}]);
+					var showcost_respPicker = doc.getElementById('cost_resp');
+					var cost_resp = doc.getElementById('cost_resp');
+					showcost_respPicker.addEventListener('tap', function(event) {
+						cost_respPicker.show(function(items) {
+							cost_resp.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+					//	库存警告选择
+					var stock_warningPicker = new $.PopPicker();
+					stock_warningPicker.setData([{
+						value: '1',
+						text: '是'
+					}, {
+						value: '2',
+						text: '否'
+					}]);
+					var showstock_warningPicker = doc.getElementById('stock_warning');
+					var stock_warning = doc.getElementById('stock_warning');
+					showstock_warningPicker.addEventListener('tap', function(event) {
+						stock_warningPicker.show(function(items) {
+							stock_warning.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+					
+					
+				});
+			})(mui, document);
+		</script>
+	</body>
+
+</html>

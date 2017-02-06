@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			.title {
+				margin: 8px 15px;
+			}
+			#add_type{
+				width: 90%;
+				display: block;
+				margin: 0px auto;
+				height: 40px;
+				padding: 0px;
+				font-size: 15px;
+				background-color: #41CEA9;
+				border: solid 1px #41CEA9;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">商品类别</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">电动车</a>
+						<div class="mui-collapse-content">
+							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
+								<li class="mui-table-view-cell">
+									二轮电动车
+								</li>
+								<li class="mui-table-view-cell">
+									三轮电动车
+								</li>
+								<li class="mui-table-view-cell">
+									四轮电动车
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">摩托车</a>
+						<div class="mui-collapse-content">
+							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
+								<li class="mui-table-view-cell">
+									二轮摩托车
+								</li>
+								<li class="mui-table-view-cell">
+									三轮摩托车
+								</li>
+								<li class="mui-table-view-cell">
+									四轮摩托车
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">新能源汽车</a>
+						<div class="mui-collapse-content">
+							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
+								<li class="mui-table-view-cell">
+									能源汽车
+								</li>
+								<li class="mui-table-view-cell">
+									电动能源车
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">配件</a>
+						<div class="mui-collapse-content">
+							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
+								<li class="mui-table-view-cell">
+									发动机
+								</li>
+								<li class="mui-table-view-cell">
+									电池
+								</li>
+								<li class="mui-table-view-cell">
+									轮胎
+								</li>
+								<li class="mui-table-view-cell">
+									化油器
+								</li>
+								<li class="mui-table-view-cell">
+									倒挡器
+								</li>
+								<li class="mui-table-view-cell">
+									仪表
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+			<p class="title">添加商品类别</p>
+			<button id="add_type" type="button" class="mui-btn mui-btn-blue mui-btn-block">添加商品分类</button>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			mui.plusReady(function() {
+				document.getElementById("add_type").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goods_add_type.html',
+						createNew:true,
+					})
+					localStorage.setItem('good_type_img','');
+				})
+			})
+		</script>
+	</body>
+
+</html>

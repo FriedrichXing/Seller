@@ -6,6 +6,20 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+			#add_type{
+				width: 90%;
+				display: block;
+				margin: 20px auto;
+				height: 40px;
+				padding: 0px;
+				font-size: 15px;
+				background-color: #41CEA9;
+				border: solid 1px #41CEA9;
+				color: #FFFFFF;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -14,9 +28,54 @@
 			<h1 class="mui-title" style="color: #FFFFFF;">企业管理</h1>
 		</header>
 		
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a id="introduce" class="mui-navigate-right">企业介绍</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a id="culture" class="mui-navigate-right">企业文化</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a id="address" class="mui-navigate-right">企业地址</a>
+				</li>
+			</ul>
+			
+			<!--<button id="add_type" type="button" class="mui-btn">新建企业管理</button>-->
+		</div>
+		
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			mui.plusReady(function(){
+				document.getElementById("introduce").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'show_detail.html',
+						createNew:true,
+					})
+					
+					localStorage.setItem('content_title','content');
+				})
+				
+				document.getElementById("culture").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'show_detail.html',
+						createNew:true,
+					})
+					
+					localStorage.setItem('content_title','culture');
+				})
+				
+				document.getElementById("address").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'show_detail.html',
+						createNew:true,
+					})
+					
+					localStorage.setItem('content_title','addr');
+				})
+				
+			})
 		</script>
 	</body>
 

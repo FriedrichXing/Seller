@@ -11,24 +11,11 @@
 		<link rel="stylesheet" href="../css/mui.poppicker.css" />
 
 		<style type="text/css">
-			#checkboxesGroup {
-				background-color: #FFFFFF;
-				border-bottom: solid 1px #DBDAE0;
-				border-top: solid 1px #DBDAE0;
-				padding-bottom: 15px;
-				padding-left: 15px;
-			}
 			
 			.mui-checkbox input[type=checkbox]:before,
 			.mui-radio input[type=radio]:before {
 				line-height: 10px;
 				margin-left: 50px;
-			}
-			
-			.checkboxSingle {
-				width: 32%;
-				display: inline-block;
-				margin-top: 10px;
 			}
 			
 			.mui-checkbox input[type=checkbox]:checked:before,
@@ -57,44 +44,10 @@
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
-			<h1 class="mui-title" style="color: #FFFFFF;">订单详情</h1>
+			<h1 class="mui-title" style="color: #FFFFFF;">商品信息</h1>
 			<a id="submit" class="mui-icon mui-icon-checkmarkempty mui-pull-right" style="color: #FFFFFF;"></a>
 		</header>
 		<div class="mui-content">
-			<!--订单状态-->
-			<p class="title">订单状态</p>
-			<div id="checkboxesGroup">
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">确认订单<input id="confirm" type="checkbox"></label>
-					</span>
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">确认付款<input id="payment" type="checkbox"></label>
-					</span>
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">商品发货<input id="postgoods" type="checkbox"></label>
-					</span>
-				<br />
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">已经退货<input id="getgoods" type="checkbox"></label>
-					</span>
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">申请退货<input id="applyreturn" type="checkbox"></label>
-					</span>
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">同意退货<input id="agreedreturn" type="checkbox"></label>
-					</span>
-				<br />
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">收到返货<input id="goodsback" type="checkbox"></label>
-					</span>
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">已经退款<input id="moneyback" type="checkbox"></label>
-					</span>
-				<span class="checkboxSingle">
-						<label class="mui-input-row mui-checkbox mui-left">已经归档<input id="overorder" type="checkbox"></label>
-					</span>
-				<br />
-			</div>
 
 			<!--商品简要-->
 			<p class="title">商品简要</p>

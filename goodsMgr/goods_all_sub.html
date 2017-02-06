@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			#picurl {
+				max-width: 60px;
+				height: 60px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="OA_task_1" class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+
+				</ul>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					var view = plus.webview.getWebviewById('goods_all_sub.html');
+					view.reload();
+					mui.toast("刷新中请稍候...");
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 500);
+			}
+
+			var count = 0;
+			var count2 = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+
+				mui.ajax('http://api.msyc.com.cn/api/goods/index', {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(mdata) {
+						count2 = mdata.data.length / 7 + 1;
+						setTimeout(function() {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > count2)); //参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.mui-table-view');
+							var cells = document.body.querySelectorAll('.mui-table-view-cell');
+
+							for(var i = cells.length, len = i + 7; i < len; i++) {
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								li.id = mdata.data[i].product_id;
+
+								li.innerHTML = '<a href="javascript:;">' +
+									'<img id="picurl" class="mui-media-object mui-pull-left" src="' + mdata.data[i].picurl + '">' +
+									'<span style="line-height:32px">' +
+									'<span id="title">' + mdata.data[i].title +
+									'</span><br />' +
+									'<span class="mui-ellipsis" style="color:#41CEA9">￥<span id="price">' + mdata.data[i].price +
+									'</span></span></span>';
+
+								table.appendChild(li);
+							};
+
+						}, 500);
+
+					},
+					error: function(xhr, type, errorThrown) { //异常处理；
+						console.log(type);
+					}
+				});
+
+			}
+
+			mui.plusReady(function() {
+				mui('#OA_task_1').on('tap', '.mui-table-view-cell',
+					function() {
+						var id = this.getAttribute('id');
+						//						mui.toast(id);
+						localStorage.setItem('goodid',id);
+						//	打开商品详情页面
+						mui.openWindow({
+							url: 'goodsEdit.html',
+							show: {
+								autoShow: false
+							},
+							createNew: true
+						});
+					});
+			});
+
+			if(mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 500);
+
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+		</script>
+	</body>
+
+</html>

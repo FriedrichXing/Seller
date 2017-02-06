@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		
+		<style type="text/css">
+			.mui-content{
+				padding-left: 10px;
+				padding-right: 5px;
+				background-color: #FFFFFF;
+			}
+			body{
+				background-color: #FFFFFF;
+			}
+			img{
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 id="news_top_title" class="mui-title" style="color: #FFFFFF;">新闻详情新闻详情新闻详情新闻详情新闻详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<span id="news_title">新闻标题</span>
+				<p id="news_content">新闻内容</p>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			mui.plusReady(function() {
+				//	传来的newsid
+				var self = plus.webview.currentWebview();
+				var newsid = self.newsid;
+				
+				mui.ajax('http://api.msyc.com.cn/api/news', {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(mdata) {
+						for(var i = 0; i < mdata.data.length; i++) {
+							if(mdata.data[i].id == newsid){
+								document.getElementById("news_top_title").innerHTML = mdata.data[i].title;
+								document.getElementById("news_title").innerHTML = mdata.data[i].title;
+								document.getElementById("news_content").innerHTML = mdata.data[i].content;
+							}
+						}
+					},
+					error: function(xhr, type, errorThrown) { //异常处理；
+						console.log(type);
+					}
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

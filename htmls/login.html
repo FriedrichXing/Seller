@@ -42,11 +42,11 @@
 				<form class="mui-input-group">
 					<div class="mui-input-row">
 						<label><span class="mui-icon mui-icon-person"></span></label>
-						<input id="username" type="text" class="mui-input-clear" placeholder="请输入用户名" />
+						<input id="username" type="text" class="mui-input-clear" placeholder="请输入用户名" value="admin666" />
 					</div>
 					<div class="mui-input-row">
 						<label><span class="mui-icon mui-icon-locked"></span></label>
-						<input id="password" type="password" class="mui-input-clear" placeholder="请输入密码" />
+						<input id="password" type="password" class="mui-input-clear" placeholder="请输入密码" value="admin666" />
 					</div>
 				</form>
 			</div>
@@ -86,15 +86,17 @@
 						success: function(mdata) {
 							
 							//	开发时期直接登录
-							mui.openWindow({
-									url:'main.html',
-									id:'main.html',
-									createNew:true,
-								});
+//							mui.openWindow({
+//									url:'main.html',
+//									id:'main.html',
+//									createNew:true,
+//								});
 							
 							
 							if(mdata.status == "success") {
 								mui.toast("登录成功！");
+								localStorage.setItem("username",username);
+								mui.toast(localStorage.getItem("username"));
 								
 								//	登录成功跳转到主页
 								mui.openWindow({

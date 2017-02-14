@@ -6,37 +6,34 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="../css/app.css" />
-		<link rel="stylesheet" href="../css/mui.picker.css" />
-		<link rel="stylesheet" href="../css/mui.poppicker.css" />
 
 		<style type="text/css">
-			
-			.mui-checkbox input[type=checkbox]:before,
-			.mui-radio input[type=radio]:before {
-				line-height: 10px;
-				margin-left: 50px;
+			.add_img {
+				border: solid 1px #EFEFF4;
+				border-radius: 5px;
+				width: 60px;
+				height: 60px;
+				margin: 0.5%;
 			}
 			
-			.mui-checkbox input[type=checkbox]:checked:before,
-			.mui-radio input[type=radio]:checked:before {
-				color: #41CEA9;
+			#imgs_holder {
+				padding: 10px 15px 10px 15px;
+				margin-bottom: 10px;
 			}
 			
-			.title {
-				margin: 8px 15px;
-			}
-			
-			.mui-input-row label {
-				width: 30%;
-			}
-			
-			.mui-input-row label~input {
-				width: 70%;
-			}
-			
-			.address {
-				line-height: 40px;
+			.mui-icon-closeempty{
+				color: #FF0000;
+				border: solid 1px #FF0000;
+				border-radius: 50%;
+				font-size: 15px;
+				position: absolute;
+				margin-left: -15px;
+				margin-top: -5px;
+                /*top:1px;*/  
+                /*right: 1px;*/   
+                /*display: block;*/        
+             /*line-height: 1;*/  
+                /*cursor: pointer;*/
 			}
 		</style>
 	</head>
@@ -45,423 +42,31 @@
 		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
 			<h1 class="mui-title" style="color: #FFFFFF;">商品信息</h1>
-			<a id="submit" class="mui-icon mui-icon-checkmarkempty mui-pull-right" style="color: #FFFFFF;"></a>
 		</header>
+		
 		<div class="mui-content">
-
-			<!--商品简要-->
-			<p class="title">商品简要</p>
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;">
-						<img id="picurl" class="mui-media-object mui-pull-left" src="../images/iLogo.png">
-						<div class="mui-media-body">
-							<span>ID:<span id="goodid">6</span></span>
-							<span id="title">商品名称</span>
-							<br />
-							<span class="mui-ellipsis">￥<span id="price">0000</span>&nbsp;&nbsp;&nbsp;<span id="weight">000</span>kg</span>
-						</div>
-					</a>
-				</li>
-			</ul>
-
-			<!--订单信息-->
-			<p class="title">商品简要</p>
-			<form class="mui-input-group">
-				<div class="mui-input-row">
-					<label>订单编号</label>
-					<span id="ordernum" class="address"></span>
-				</div>
-				<div class="mui-input-row">
-					<label>用户名</label>
-					<span id="username" class="address"></span>
-				</div>
-				<div class="mui-input-row">
-					<label>数量</label>
-					<!--<input id="num" type="text" class="mui-input-clear" placeholder="请输入数量">-->
-					<span id="num" class="address"></span>
-				</div>
-				<div class="mui-input-row">
-					<label>颜色</label>
-					<span id="color" class="address"></span>
-				</div>
-				<div class="mui-input-row">
-					<label>规格</label>
-					<span id="specification" class="address"></span>
-				</div>
-				<div class="mui-input-row">
-					<label>运费</label>
-					<input id="cost" type="text" class="mui-input-clear" placeholder="请输入运费">
-				</div>
-				<div class="mui-input-row">
-					<label>订单金额</label>
-					<input id="amount" type="text" class="mui-input-clear" placeholder="请输入订单金额">
-				</div>
-				<div class="mui-input-row">
-					<label>买家备注</label>
-					<input id="buyremark" type="text" class="mui-input-clear" placeholder="请输入买家备注">
-				</div>
-				<div class="mui-input-row">
-					<label>收件人</label>
-					<span id="truename" class="address"></span>
-				</div>
-				<div class="mui-input-row">
-					<label>电话</label>
-					<input id="telephone" type="text" class="mui-input-clear" placeholder="请输入电话">
-				</div>
-				<div class="mui-input-row">
-					<label>邮编</label>
-					<input id="zipcode" type="text" class="mui-input-clear" placeholder="请输入邮编">
-				</div>
-				<div class="mui-input-row">
-					<label>省市区</label>
-					<span class="address" id='prov'>省</span>&nbsp;<span id="city">市</span>&nbsp;<span id="country">区</span>
-				</div>
-				<div class="mui-input-row">
-					<label>收获地址</label>
-					<input id="addrs" type="text" class="mui-input-clear" placeholder="请输入收获地址">
-				</div>
-				<!--<div class="mui-input-row">
-					<label>发货时间</label>
-					<input id="posttime" type="text" class="mui-input-clear" placeholder="请输入发货时间">
-				</div>-->
-				<div class="mui-input-row">
-					<label>配送方式</label>
-					<span class="address" id="postMode" class="postMode">配送方式</span>
-				</div>
-				<div class="mui-input-row">
-					<label>支付方式</label>
-					<span class="address" id="payMode" class="payMode">支付方式</span>
-				</div>
-				<div class="mui-input-row">
-					<label>取货方式</label>
-					<span class="address" id="getMode" class="getMode">取货方式</span>
-				</div>
+		    <form id="imgs_holder" class="mui-input-group">
+		    	<span><img id="pick_imgs" class="add_img" src="../images/plus.png" /></span>
+		    	<span><img id="img0" class="add_img" src="../images/aaa.jpg" style="opacity:0.5" /></span>
+		    	<span><img id="img0" class="add_img" src="../images/aaa.jpg" /></span>
+		    	<span><img id="img0" class="add_img" src="../images/aaa.jpg" /></span>
+		    	<span><img id="img0" class="add_img" src="../images/aaa.jpg" /></span>
+		    	<span><img id="img0" class="add_img" src="../images/aaa.jpg" /><span class="mui-icon mui-icon-closeempty"></span></span>
+				
+				
+				
+				
 			</form>
 		</div>
 
 		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript" src="../js/city.data-3.js"></script>
-		<script type="text/javascript" src="../js/city.data.js"></script>
-		<script type="text/javascript" src="../js/mui.picker.js"></script>
-		<script type="text/javascript" src="../js/mui.poppicker.js"></script>
-		<script type="text/javascript" src="../js/md5-min.js"></script>
 		<script type="text/javascript">
 			mui.init();
 
-			mui.plusReady(function() {
-				//	传来的orderid
-				var self = plus.webview.currentWebview();
-				var orderid = self.orderid;
-				var whichPage = self.whichPage;
-
-				mui.ajax('http://api.msyc.com.cn/api/admin/order/' + orderid + '', {
-					dataType: 'json', //服务器返回json格式数据
-					type: 'get', //HTTP请求类型
-					timeout: 10000, //超时时间设置为10秒；
-					success: function(mdata) {
-
-						var status_code = mdata.data[0].status_code;
-						console.log(status_code);
-
-						if(status_code.indexOf("confirm") > -1) {
-							document.getElementById("confirm").checked = true;
-						}
-						if(status_code.indexOf("payment") > -1) {
-							document.getElementById("payment").checked = true;
-						}
-						if(status_code.indexOf("postgoods") > -1) {
-							document.getElementById("postgoods").checked = true;
-						}
-						if(status_code.indexOf("getgoods") > -1) {
-							document.getElementById("getgoods").checked = true;
-						}
-						if(status_code.indexOf("applyreturn") > -1) {
-							document.getElementById("applyreturn").checked = true;
-						}
-						if(status_code.indexOf("agreedreturn") > -1) {
-							document.getElementById("agreedreturn").checked = true;
-						}
-						if(status_code.indexOf("goodsback") > -1) {
-							document.getElementById("goodsback").checked = true;
-						}
-						if(status_code.indexOf("moneyback") > -1) {
-							document.getElementById("moneyback").checked = true;
-						}
-						if(status_code.indexOf("overorder") > -1) {
-							document.getElementById("overorder").checked = true;
-						}
-
-						document.getElementById("picurl").src = mdata.data[0].attribute.picurl;
-						document.getElementById("goodid").innerHTML = mdata.data[0].attribute.goodid;
-						document.getElementById("title").innerHTML = mdata.data[0].attribute.title;
-						document.getElementById("price").innerHTML = mdata.data[0].attribute.price;
-						document.getElementById("weight").innerHTML = mdata.data[0].attribute.weight;
-
-						document.getElementById("ordernum").innerHTML = mdata.data[0].ordernum;
-						document.getElementById("username").innerHTML = mdata.data[0].username;
-						document.getElementById("num").innerHTML = mdata.data[0].attribute.num;
-						document.getElementById("color").innerHTML = mdata.data[0].attribute.color;
-						document.getElementById("specification").innerHTML = mdata.data[0].attribute.specification;
-						document.getElementById("cost").value = mdata.data[0].cost;
-						document.getElementById("amount").value = mdata.data[0].amount;
-						document.getElementById("buyremark").value = mdata.data[0].buyremark;
-						document.getElementById("truename").innerHTML = mdata.data[0].addr.truename;
-						document.getElementById("telephone").value = mdata.data[0].addr.telephone;
-						document.getElementById("zipcode").value = mdata.data[0].addr.zipcode;
-						document.getElementById("prov").innerHTML = mdata.data[0].addr.prov;
-						document.getElementById("city").innerHTML = mdata.data[0].addr.city;
-						document.getElementById("country").innerHTML = mdata.data[0].addr.country;
-						document.getElementById("addrs").value = mdata.data[0].addr.addrs;
-
-						if(mdata.data[0].postmode == 1) {
-							document.getElementById("postMode").innerHTML = "骑境商城配送";
-						}
-
-						if(mdata.data[0].paymode == 1) {
-							document.getElementById("payMode").innerHTML = "在线支付"
-						} else {
-							document.getElementById("payMode").innerHTML = "货到付款"
-						}
-
-						if(mdata.data[0].getmode == 1) {
-							document.getElementById("getMode").innerHTML = "送货上门"
-						} else {
-							document.getElementById("getMode").innerHTML = "用户自取"
-						}
-
-					},
-					error: function(xhr, type, errorThrown) { //异常处理；
-						console.log(type);
-					}
-				});
-
-				//	确认按钮
-				document.getElementById("submit").addEventListener('tap', function() {
-					var status_state = [];
-					if(document.getElementById("confirm").checked == true) {
-						status_state.push("confirm");
-					}
-					if(document.getElementById("payment").checked == true) {
-						status_state.push("payment");
-					}
-					if(document.getElementById("postgoods").checked == true) {
-						status_state.push("postgoods");
-					}
-					if(document.getElementById("getgoods").checked == true) {
-						status_state.push("getgoods");
-					}
-					if(document.getElementById("applyreturn").checked == true) {
-						status_state.push("applyreturn");
-					}
-					if(document.getElementById("agreedreturn").checked == true) {
-						status_state.push("agreedreturn");
-					}
-					if(document.getElementById("goodsback").checked == true) {
-						status_state.push("goodsback");
-					}
-					if(document.getElementById("moneyback").checked == true) {
-						status_state.push("moneyback");
-					}
-					if(document.getElementById("overorder").checked == true) {
-						status_state.push("overorder");
-					}
-					var checkinfo = status_state.toString();
-					console.log(checkinfo);
-
-					var postmode;
-					if(document.getElementById("postMode").innerHTML == "骑境商城配送") {
-						postmode = 1;
-					}
-					var paymode;
-					if(document.getElementById("payMode").innerHTML == "在线支付") {
-						paymode = 1;
-					} else {
-						paymode = 2;
-					}
-					var getmode;
-					if(document.getElementById("getMode").innerHTML == "送货上门") {
-						getmode = 1;
-					} else {
-						getmode = 2;
-					}
-
-					var ordernum = document.getElementById("ordernum").innerHTML;
-					var secret_key = hex_md5(ordernum + "TjKmANwABRP7csm7KqGx2uiuNHVenebx");
-					mui.ajax('http://api.msyc.com.cn/api/admin/order/modify/' + orderid + '', {
-						data: {
-							checkinfo: checkinfo,
-							ordernum: document.getElementById("ordernum").innerHTML,
-							cost: document.getElementById("cost").value,
-							amount: document.getElementById("amount").value,
-							truename: document.getElementById("truename").innerHTML,
-							telephone: document.getElementById("telephone").value,
-							zipcode: document.getElementById("zipcode").value,
-							prov: document.getElementById("prov").innerHTML,
-							city: document.getElementById("city").innerHTML,
-							country: document.getElementById("country").innerHTML,
-							addrs: document.getElementById("addrs").value,
-							postmode: postmode,
-							paymode: paymode,
-							getmode: getmode,
-							secret_key: secret_key
-						},
-						dataType: 'json', //服务器返回json格式数据
-						type: 'post', //HTTP请求类型
-						timeout: 10000, //超时时间设置为10秒；
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						success: function(mdata) {
-							console.log(secret_key);
-							if(mdata.status == "success") {
-								mui.toast("订单修改成功！");
-								//	返回刷新列表页面
-								if(whichPage == 1){
-									var view_confirm = plus.webview.getWebviewById('confirm_sub.html');
-									view_confirm.reload();
-								} else if(whichPage == 2){
-									var view_payment = plus.webview.getWebviewById('payment_sub.html');
-									view_payment.reload();
-								} else if(whichPage == 3){
-									var view_postgoods = plus.webview.getWebviewById('postgoods_sub.html');
-									view_postgoods.reload();
-								} else if(whichPage == 4){
-									var view_getgoods = plus.webview.getWebviewById('getgoods_sub.html');
-									view_getgoods.reload();
-								} else if(whichPage == 5){
-									var view_applyreturn = plus.webview.getWebviewById('applyreturn_sub.html');
-									view_applyreturn.reload();
-								} else if(whichPage == 6){
-									var view_agreedreturn = plus.webview.getWebviewById('agreedreturn_sub.html');
-									view_agreedreturn.reload();
-								} else if(whichPage == 7){
-									var view_goodsback = plus.webview.getWebviewById('goodsback_sub.html');
-									view_goodsback.reload();
-								} else if(whichPage == 8){
-									var view_moneyback = plus.webview.getWebviewById('moneyback_sub.html');
-									view_moneyback.reload();
-								} else if(whichPage == 9){
-									var view_overorder = plus.webview.getWebviewById('overorder_sub.html');
-									view_overorder.reload();
-								}
-								
-								mui.back();
-							} else {
-								mui.toast(mdata.data.msg);
-							}
-//							mui.swipeoutClose(li);
-
-						},
-						error: function(xhr, type, errorThrown) {
-							//异常处理；
-							mui.toast("删除失败，请稍后再试。。");
-							console.log(type);
-						}
-					});
-				});
-
-			});
-
-			(function($, doc) {
-				$.init();
-				$.ready(function() {
-
-					//	配送方式选择
-					var postModePicker = new $.PopPicker();
-					postModePicker.setData([{
-						value: '1',
-						text: '骑境商城配送'
-					}]);
-					var showPostModePicker = doc.getElementById('postMode');
-					var postMode = doc.getElementById('postMode');
-					showPostModePicker.addEventListener('tap', function(event) {
-						postModePicker.show(function(items) {
-							postMode.innerText = items[0].text;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-
-					//	支付方式选择
-					var payModePicker = new $.PopPicker();
-					payModePicker.setData([{
-						value: '1',
-						text: '在线支付'
-					}, {
-						value: '2',
-						text: '货到付款'
-					}]);
-					var showPayModePicker = doc.getElementById('payMode');
-					var payMode = doc.getElementById('payMode');
-					showPayModePicker.addEventListener('tap', function(event) {
-						payModePicker.show(function(items) {
-							payMode.innerText = items[0].text;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-
-					//	取货方式选择
-					var getModePicker = new $.PopPicker();
-					getModePicker.setData([{
-						value: '1',
-						text: '送货上门'
-					}, {
-						value: '2',
-						text: '用户自取'
-					}]);
-					var showGetModePicker = doc.getElementById('getMode');
-					var getMode = doc.getElementById('getMode');
-					showGetModePicker.addEventListener('tap', function(event) {
-						getModePicker.show(function(items) {
-							getMode.innerText = items[0].text;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-
-					//	省市区选择
-					var cityPicker3 = new $.PopPicker({
-						layer: 3
-					});
-					cityPicker3.setData(cityData3);
-					var showCityPickerButton = doc.getElementById('prov');
-					var city = doc.getElementById('city');
-					var country = doc.getElementById('country');
-					showCityPickerButton.addEventListener('tap', function(event) {
-						cityPicker3.show(function(items) {
-							showCityPickerButton.innerHTML = (items[0] || {}).text;
-							city.innerHTML = (items[1] || {}).text;
-							country.innerHTML = (items[2] || {}).text;
-
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-					city.addEventListener('tap', function(event) {
-						cityPicker3.show(function(items) {
-							showCityPickerButton.innerHTML = (items[0] || {}).text;
-							city.innerHTML = (items[1] || {}).text;
-							country.innerHTML = (items[2] || {}).text;
-
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-					country.addEventListener('tap', function(event) {
-						cityPicker3.show(function(items) {
-							showCityPickerButton.innerHTML = (items[0] || {}).text;
-							city.innerHTML = (items[1] || {}).text;
-							country.innerHTML = (items[2] || {}).text;
-
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
-				});
-			})(mui, document);
-
+			mui.plusReady(function(){
+				
+			})
+			
 		</script>
 	</body>
 

@@ -11,7 +11,8 @@
 			.title {
 				margin: 8px 15px;
 			}
-			#add_type{
+			
+			#add_type {
 				width: 90%;
 				display: block;
 				margin: 0px auto;
@@ -31,96 +32,159 @@
 		</header>
 		<div class="mui-content">
 			<div class="mui-card">
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">电动车</a>
-						<div class="mui-collapse-content">
-							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
-								<li class="mui-table-view-cell">
-									二轮电动车
-								</li>
-								<li class="mui-table-view-cell">
-									三轮电动车
-								</li>
-								<li class="mui-table-view-cell">
-									四轮电动车
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">摩托车</a>
-						<div class="mui-collapse-content">
-							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
-								<li class="mui-table-view-cell">
-									二轮摩托车
-								</li>
-								<li class="mui-table-view-cell">
-									三轮摩托车
-								</li>
-								<li class="mui-table-view-cell">
-									四轮摩托车
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">新能源汽车</a>
-						<div class="mui-collapse-content">
-							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
-								<li class="mui-table-view-cell">
-									能源汽车
-								</li>
-								<li class="mui-table-view-cell">
-									电动能源车
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">配件</a>
-						<div class="mui-collapse-content">
-							<ul class="mui-table-view" style="margin: -5px 0px -5px 0px;">
-								<li class="mui-table-view-cell">
-									发动机
-								</li>
-								<li class="mui-table-view-cell">
-									电池
-								</li>
-								<li class="mui-table-view-cell">
-									轮胎
-								</li>
-								<li class="mui-table-view-cell">
-									化油器
-								</li>
-								<li class="mui-table-view-cell">
-									倒挡器
-								</li>
-								<li class="mui-table-view-cell">
-									仪表
-								</li>
-							</ul>
-						</div>
-					</li>
+				<ul id="parent_class" class="mui-table-view">
 				</ul>
 
 			</div>
 
 			<p class="title">添加商品类别</p>
 			<button id="add_type" type="button" class="mui-btn mui-btn-blue mui-btn-block">添加商品分类</button>
+			<!--<button id="getdata" type="button" class="mui-btn">数据</button>-->
 		</div>
+
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init();
 
+			var data = {
+				"type": [{
+					"id": 1,
+					"name": "电动车",
+					"types": [{
+						"id": "ddc01",
+						"name": "二轮电动车"
+					}, {
+						"id": "ddc02",
+						"name": "三轮电动车"
+					}, {
+						"id": "ddc03",
+						"name": "四轮电动车"
+					}]
+				}, {
+					"id": 2,
+					"name": "摩托车",
+					"types": [{
+						"id": "mtc01",
+						"name": "二轮电动车"
+					}, {
+						"id": "mtc02",
+						"name": "三轮电动车"
+					}, {
+						"id": "mtc03",
+						"name": "四轮电动车"
+					}]
+				}, {
+					"id": 3,
+					"name": "新能源汽车",
+					"types": [{
+						"id": "xny01",
+						"name": "能源汽车"
+					}, {
+						"id": "xny02",
+						"name": "电动能源车"
+					}]
+				}, {
+					"id": 4,
+					"name": "配件",
+					"types": [{
+						"id": "pj01",
+						"name": "发动机"
+					}, {
+						"id": "pj02",
+						"name": "电池"
+					}, {
+						"id": "pj03",
+						"name": "轮胎"
+					}, {
+						"id": "pj04",
+						"name": "化油器"
+					}, {
+						"id": "pj05",
+						"name": "倒挡器"
+					}, {
+						"id": "pj06",
+						"name": "仪表"
+					}]
+				}]
+			};
+
 			mui.plusReady(function() {
-				document.getElementById("add_type").addEventListener('tap',function(){
+				document.getElementById("add_type").addEventListener('tap', function() {
 					mui.openWindow({
-						url:'goods_add_type.html',
-						createNew:true,
+						url: 'goods_add_type.html',
+						createNew: true,
 					})
-					localStorage.setItem('good_type_img','');
 				})
+
+				//	获取所有一级分类
+				mui.ajax('http://api.msyc.com.cn/api/admin/type/0,', {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(mdata) {
+						//	循环输出一级分类
+						var table = document.body.querySelector('#parent_class');
+						for(var i = 0; i < mdata.data.length; i++) {
+							var li = document.createElement('li');
+							li.className = 'mui-table-view-cell mui-collapse';
+							li.id = mdata.data[i].id;
+
+							li.innerHTML = '<a class="mui-navigate-right" href="#">' + mdata.data[i].classname + '</a>' +
+								'<div class="mui-collapse-content">' +
+								'<ul id="sub_class' + mdata.data[i].id + '" class="mui-table-view" style="margin: -5px 0px -5px 0px;">' +
+								'</ul>' +
+								'</div>';
+
+							table.appendChild(li);
+							
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+				
+				//	获取二级菜单
+				mui('#parent_class').on('tap', '.mui-collapse',
+					function() {
+						var id = this.getAttribute('id');
+//						console.log("id为"+id);
+						
+						var tablesub = document.getElementById("sub_class"+id+"");
+						if(tablesub.innerHTML == ""){
+							mui.ajax('http://api.msyc.com.cn/api/admin/type/0,'+id+',', {
+								dataType: 'json', //服务器返回json格式数据
+								type: 'get', //HTTP请求类型
+								timeout: 10000, //超时时间设置为10秒；
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								success: function(mdata) {
+									//	循环输出二级分类
+									for(var j = 0; j < mdata.data.length; j++) {
+										var li = document.createElement('li');
+										li.className = 'mui-table-view-cell';
+										li.id = mdata.data[j].id;
+										li.innerHTML = ''+mdata.data[j].classname+'';
+										tablesub.appendChild(li);;
+									}
+
+								},
+								error: function(xhr, type, errorThrown) {
+									//异常处理；
+									console.log(type);
+								}
+							});
+						}
+						
+						
+					});
+				
+
 			})
 		</script>
 	</body>

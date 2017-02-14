@@ -31,23 +31,7 @@
 		</header>
 		<div class="mui-content">
 			<div class="mui-card">
-				<ul id="brand_ul" class="mui-table-view">
-					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">金翌</a>
-						<div class="mui-collapse-content">
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">鑫洋</a>
-						<div class="mui-collapse-content">
-						</div>
-					</li>
-					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#">其他</a>
-						<div class="mui-collapse-content">
-							
-						</div>
-					</li>
+				<ul id="parent_class" class="mui-table-view">
 				</ul>
 			</div>
 
@@ -66,6 +50,40 @@
 						createNew:true
 					})
 				})
+				
+				//	获取所有一级分类
+				mui.ajax('http://api.msyc.com.cn/api/admin/brand/0,', {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(mdata) {
+						//	循环输出一级分类
+						var table = document.body.querySelector('#parent_class');
+						for(var i = 0; i < mdata.data.length; i++) {
+							var li = document.createElement('li');
+							li.className = 'mui-table-view-cell mui-collapse';
+							li.id = mdata.data[i].id;
+
+							li.innerHTML = '<a class="mui-navigate-right" href="#">' + mdata.data[i].classname + '</a>' +
+								'<div class="mui-collapse-content">' +
+								'<ul id="sub_class' + mdata.data[i].id + '" class="mui-table-view" style="margin: -5px 0px -5px 0px;">' +
+								'</ul>' +
+								'</div>';
+
+							table.appendChild(li);
+							
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+				
+				
 			})
 		</script>
 	</body>

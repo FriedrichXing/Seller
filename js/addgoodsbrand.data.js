@@ -1,6 +1,6 @@
 var goodstypeData = [{
 	value: '0',
-	text: '一级品牌分类',
+	text: '添加子分类',
 },{
 	value: '1',
 	text: '金翌',

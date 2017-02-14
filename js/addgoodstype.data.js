@@ -1,6 +1,6 @@
 var goodstypeData = [{
 	value: '0',
-	text: '一级商品分类',
+	text: '添加一级分类',
 //	children: [{
 //		value: "0",
 //		text: "一级商品分类"
@@ -10,18 +10,24 @@ var goodstypeData = [{
 	text: '电动车',
 	children: [{
 		value: "0",
-		text: "二轮电动车"
+		text: "添加子分类"
 	}, {
 		value: "1",
-		text: "三轮电动车"
+		text: "二轮电动车"
 	}, {
 		value: "2",
+		text: "三轮电动车"
+	}, {
+		value: "3",
 		text: "四轮电动车"
 	}]
 }, {
 	value: '2',
 	text: '摩托车',
 	children: [{
+		value: "3",
+		text: "添加子分类"
+	},{
 		value: "0",
 		text: "二轮摩托车"
 	}, {
@@ -35,6 +41,9 @@ var goodstypeData = [{
 	value: '3',
 	text: '新能源汽车',
 	children: [{
+		value: "2",
+		text: "添加子分类"
+	},{
 		value: "0",
 		text: "能源汽车"
 	}, {
@@ -45,6 +54,9 @@ var goodstypeData = [{
 	value: '4',
 	text: '配件',
 	children: [{
+		value: "6",
+		text: "添加子分类"
+	},{
 		value: "0",
 		text: "发动机"
 	},{

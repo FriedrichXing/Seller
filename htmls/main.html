@@ -17,6 +17,9 @@
 			.mui-bar-tab .mui-tab-item.mui-active{
 				color: #41CEA9;
 			}
+			.mui-bar-nav{
+				box-shadow: none;
+			}
 		</style>
 	</head>
 
@@ -82,6 +85,8 @@
 					}
 					//更换标题
 					title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+					
+					
 					//显示目标选项卡
 					plus.webview.show(targetTab);
 					//隐藏当前选项卡

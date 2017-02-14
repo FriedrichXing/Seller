@@ -14,11 +14,29 @@
 				margin: 8px 15px;
 			}
 			
+			#picarr_upload {
+				float: right;
+				padding: 0px 5px;
+				height: 21px;
+				font-size: 14px;
+				background-color: #41CEA9;
+				color: #FFFFFF;
+				border: solid 1px #41CEA9;
+			}
+			
 			.span_line_height {
 				line-height: 40px;
 			}
 			
 			.add_img {
+				border: solid 1px #EFEFF4;
+				border-radius: 5px;
+				width: 60px;
+				height: 60px;
+				margin: 0.5%;
+			}
+			
+			#pick_imgs {
 				border: solid 1px #EFEFF4;
 				border-radius: 5px;
 				width: 60px;
@@ -39,6 +57,50 @@
 				margin: 0px auto 10px auto;
 				background-color: #41CEA9;
 			}
+			
+			#good_detail {
+				font-size: 15px;
+				height: 150px;
+				background-color: #FFFFFF;
+				padding: 10px 15px;
+				overflow: auto;
+				overflow-x: hidden;
+				border: solid 1px #E3E2E5;
+			}
+			
+			.mui-icon-closeempty {
+				color: #FF0000;
+				border: solid 1px #FF0000;
+				border-radius: 50%;
+				font-size: 15px;
+				font-weight: bolder;
+				position: absolute;
+				margin-left: -15px;
+				margin-top: -5px;
+			}
+			
+			#checkbox_holder {
+				padding: 10px 15px;
+				background-color: #FFFFFF;
+				border: solid 1px #E3E2E5;
+			}
+			
+			.mui-checkbox input[type=checkbox]:before,
+			.mui-radio input[type=radio]:before {
+				line-height: 0px;
+				margin-left: 50px;
+			}
+			
+			.checkboxSingle {
+				width: 32%;
+				display: inline-block;
+				margin-top: 10px;
+			}
+			
+			.mui-checkbox input[type=checkbox]:checked:before,
+			.mui-radio input[type=radio]:checked:before {
+				color: #41CEA9;
+			}
 		</style>
 	</head>
 
@@ -58,6 +120,26 @@
 					</a>
 				</li>
 			</ul>
+
+			<!--商品详情-->
+			<p class="title">商品属性</p>
+			<div id="checkbox_holder">
+				<!--<span class="checkboxSingle">
+						<label class="mui-input-row mui-checkbox">推荐<input id="c" type="checkbox"></label>
+					</span>
+				<span class="checkboxSingle">
+						<label class="mui-input-row mui-checkbox">幻灯<input id="f" type="checkbox"></label>
+					</span>
+				<span class="checkboxSingle">
+						<label class="mui-input-row mui-checkbox">特推<input id="a" type="checkbox"></label>
+					</span>
+				<span class="checkboxSingle">
+						<label class="mui-input-row mui-checkbox">特价<input id="t" type="checkbox"></label>
+					</span>
+				<span class="checkboxSingle">
+						<label class="mui-input-row mui-checkbox">热卖<input id="h" type="checkbox"></label>
+					</span>-->
+			</div>
 
 			<!--商品详情-->
 			<p class="title">商品详情</p>
@@ -94,11 +176,11 @@
 				</div>
 				<div class="mui-input-row">
 					<label>商品颜色</label>
-					<input id="good_color" type="text" class="mui-input-clear" placeholder="请输入商品颜色">
+					<input id="good_color" type="text" class="mui-input-clear" placeholder="商品颜色请用|隔开">
 				</div>
 				<div class="mui-input-row">
 					<label>商品规格</label>
-					<input id="good_spec" type="text" class="mui-input-clear" placeholder="请输入商品规格">
+					<input id="good_spec" type="text" class="mui-input-clear" placeholder="商品规格请用|隔开">
 				</div>
 				<div class="mui-input-row">
 					<label>市场价</label>
@@ -137,14 +219,6 @@
 					<input id="good_weight" type="text" class="mui-input-clear" placeholder="请输入商品重量">
 				</div>
 				<div class="mui-input-row">
-					<label>返点积分</label>
-					<input id="integral" type="text" class="mui-input-clear" placeholder="请输入返点积分">
-				</div>
-				<div class="mui-input-row">
-					<label>点击次数</label>
-					<input id="hits" type="text" class="mui-input-clear" placeholder="请输入返点积分">
-				</div>
-				<div class="mui-input-row">
 					<label>排列排序</label>
 					<input id="order_num" type="text" class="mui-input-clear" placeholder="请输入返点积分">
 				</div>
@@ -152,12 +226,23 @@
 					<label>商品摘要</label>
 					<input id="description" type="text" class="mui-input-clear" placeholder="请输入商品摘要">
 				</div>
+
 			</form>
 
+			<!--商品详情-->
+			<p class="title">商品详情</p>
+			<!--<div id="good_detail">
+				<span>添加商品详情</span>
+			</div>-->
+			<textarea id="good_detail"></textarea>
+
 			<!--商品图片-->
-			<p class="title">商品图片</p>
+			<p class="title">商品组图
+				<button id="picarr_upload" type="button" class="mui-btn ">上传组图</button>
+			</p>
 			<form id="imgs_holder" class="mui-input-group">
-				<img id="pick_imgs" class="add_img" src="../images/plus.png" />
+				<span><img id="pick_imgs" src="../images/plus.png" /></span>
+
 			</form>
 
 			<button id="submit" type="button" class="mui-btn mui-btn-green mui-btn-block">确认</button>
@@ -165,13 +250,49 @@
 		</div>
 
 		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript" src="../js/goodstype.data.js"></script>
-		<script type="text/javascript" src="../js/mui.picker.js"></script>
-		<script type="text/javascript" src="../js/mui.poppicker.js"></script>
+		<script type="text/javascript" src="../js/mui.pickeroverride.js"></script>
+		<script type="text/javascript" src="../js/mui.poppickeroverridetoshow.js"></script>
 		<script type="text/javascript">
 			mui.init();
 
+			var imgsArray = new Array(); //	存放照片的数组
+			var typeid, typepid, typepstr, typeclassname, brandid, brandpid, brandpstr, brandclassname;
+			var flag, color_id, specification_id, attrstr;
+			var payfreight, payfreight_text, housewarn, housewarn_text, housenum, warnnum, title, color, specification, marketprice, salesprice, level_1, level_2, level_3, level_4, level_5, goodsid, weight, orderid, description, content;
+			var picurl = "";
+			var picarr = "";
+
 			mui.plusReady(function() {
+				
+				//	添加商品flag
+				mui.ajax('http://api.msyc.com.cn/api/admin/flag', {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(mdata) {
+							var table = document.body.querySelector('#checkbox_holder');
+							for(var i = 0; i < mdata.data.length; i++) {
+								var span = document.createElement('span');
+								span.className = 'checkboxSingle';
+//								span.id = mdata.data[i].flag;
+								
+								
+
+								span.innerHTML = '<label class="mui-input-row mui-checkbox">'+mdata.data[i].flagname+
+								'<input id="'+mdata.data[i].flag+'" type="checkbox" class = "inputclass"></label>';
+									
+								table.appendChild(span);
+							}
+					},
+					error: function(xhr, type, errorThrown) { //异常处理；
+						console.log(type);
+					}
+				});
+				
+				
+				
+				
+				
 
 				//	选择拍照或者相册
 				document.getElementById('changeImg').addEventListener('tap', function() {
@@ -201,59 +322,311 @@
 						})
 					}
 				}, false);
-				
+
 				//	选择商品图片
-					document.getElementById("pick_imgs").addEventListener('tap', function() {
-						galleryImgs();
-					})
-				
+				document.getElementById("pick_imgs").addEventListener('tap', function() {
+					galleryImgs();
+				})
+
 				//	添加商品操作
-					document.getElementById("submit").addEventListener('tap',function(){
-						//	传递的数据
-						var picurl = localStorage.getItem('newImgbase');
-						var goodtype = document.getElementById("class_two").innerHTML;
-						var goodbrand = document.getElementById("good_brand").innerHTML;
-						var payfreight = document.getElementById("cost_resp").innerHTML;
-						var housewarn = document.getElementById("stock_warning").innerHTML;
-						var housenum = document.getElementById("stock_num").value;
-						var warnnum = document.getElementById("warning_num").value;
-						var title = document.getElementById("good_title").value;
-						var color = document.getElementById("good_color").value;
-						var specification = document.getElementById("good_spec").value;
-						var marketprice = document.getElementById("good_market_price").value;
-						var salesprice = document.getElementById("good_sale_price").value;
-						var level_1 = document.getElementById("good_lv1_price").value;
-						var level_2 = document.getElementById("good_lv2_price").value;
-						var level_3 = document.getElementById("good_lv3_price").value;
-						var level_4 = document.getElementById("good_lv4_price").value;
-						var level_5 = document.getElementById("good_lv5_price").value;
-						var goodid = document.getElementById("good_id").value;
-						var weight = document.getElementById("good_weight").value;
-						var integral = document.getElementById("integral").value;
-						var hits = document.getElementById("hits").value;
-						var order_num = document.getElementById("order_num").value;
-						var description = document.getElementById("description").value;
-						var imgsdata = imgsArray;
-						
+				document.getElementById("submit").addEventListener('tap', function() {
+
+					if(color_id == null) {
+						mui.toast("选择分类")
+					} else {
 						var btnArray = ['否', '是'];
 						mui.confirm('确认添加商品？', '骑境商城', btnArray, function(e) {
 							if(e.index == 1) {
-								//	提交接口
-								mui.toast("等接口");
+
+								//								mui.toast(flag);
+								//								console.log(JSON.stringify(newgood));
+
+								//	添加商品接口
+								//								console.log(attrstr);
+								//							console.log(JSON.stringify(newgood));
+
+								//	传递的数据
+								//					var picurl = localStorage.getItem('newImgbase');
+								payfreight_text = document.getElementById("cost_resp").innerHTML;
+								if(payfreight_text == "卖家承担") {
+									payfreight = 1;
+								} else {
+									payfreight = 0;
+								}
+								housewarn_text = document.getElementById("stock_warning").innerHTML;
+								if(housewarn_text == "是") {
+									housewarn = true;
+								} else {
+									housewarn = false;
+								}
+								housenum = document.getElementById("stock_num").value;
+								warnnum = document.getElementById("warning_num").value;
+								title = document.getElementById("good_title").value;
+								color = document.getElementById("good_color").value;
+								specification = document.getElementById("good_spec").value;
+								marketprice = document.getElementById("good_market_price").value;
+								salesprice = document.getElementById("good_sale_price").value;
+								level_1 = document.getElementById("good_lv1_price").value;
+								level_2 = document.getElementById("good_lv2_price").value;
+								level_3 = document.getElementById("good_lv3_price").value;
+								level_4 = document.getElementById("good_lv4_price").value;
+								level_5 = document.getElementById("good_lv5_price").value;
+								goodsid = document.getElementById("good_id").value;
+								weight = document.getElementById("good_weight").value;
+								orderid = document.getElementById("order_num").value;
+								description = document.getElementById("description").value;
+								content = document.getElementById("good_detail").value;
+
+								var flag_arr = [];
+//								mui.toast(mui('#checkbox_holder .inputclass').length);
+								for (var i = 0; i < mui('#checkbox_holder .inputclass').length; i++) {
+									if(mui('#checkbox_holder .inputclass')[i].checked == true){
+										flag_arr.push(mui('#checkbox_holder .inputclass')[i].id);
+									}
+								}
+								
+								flag = flag_arr.toString();
+//								mui.toast(flag);
+
+								attrstr = "array(\"" + color_id + "\"=>\"" + color + "\",\"" + specification_id + "\"=>\"" + specification + "\");";
+
+								var newgood = {
+									"author": localStorage.getItem("username"),
+									"typeid": typeid,
+									"typepid": typepid,
+									"typepstr": typepstr,
+									"brandid": brandid,
+									"brandpid": brandpid,
+									"brandpstr": brandpstr,
+									"payfreight": payfreight,
+									"housewarn": housewarn,
+									"housenum": housenum,
+									"warnnum": warnnum,
+									"title": title,
+									"marketprice": marketprice,
+									"salesprice": salesprice,
+									"level_1": level_1,
+									"level_2": level_2,
+									"level_3": level_3,
+									"level_4": level_4,
+									"level_5": level_5,
+									"goodsid": goodsid,
+									"weight": weight,
+									"orderid": orderid,
+									"description": description,
+									"content": content,
+									"picurl": picurl,
+									"picarr": picarr,
+									"flag": flag,
+									"attrstr": attrstr
+								};
+
+								mui.ajax('http://api.msyc.com.cn/api/admin/good/add', {
+									data: {
+										author: localStorage.getItem("username"),
+										typeid: typeid,
+										typepid: typepid,
+										typepstr: typepstr,
+										brandpid: brandpid,
+										brandpstr: brandpstr,
+										brandid: brandid,
+										payfreight: payfreight,
+										housewarn: housewarn,
+										housenum: housenum,
+										warnnum: warnnum,
+										title: title,
+										marketprice: marketprice,
+										salesprice: salesprice,
+										level_1: level_1,
+										level_2: level_2,
+										level_3: level_3,
+										level_4: level_4,
+										level_5: level_5,
+										goodsid: goodsid,
+										weight: weight,
+										orderid: orderid,
+										description: description,
+										content: content,
+										picurl: picurl,
+										picarr: picarr,
+										flag: flag,
+										attrstr: attrstr
+									},
+									dataType: 'json', //服务器返回json格式数据
+									type: 'post', //HTTP请求类型
+									timeout: 10000, //超时时间设置为10秒；
+									headers: {
+										'Content-Type': 'application/json'
+									},
+									beforeSend: function() {
+										plus.nativeUI.showWaiting("正在添加...");
+									},
+									complete: function() {
+										plus.nativeUI.closeWaiting();
+									},
+									success: function(mdata) {
+										mui.toast("111");
+
+//										mui.toast(JSON.stringify(mdata));
+
+										if(mdata.status == "success") {
+											mui.toast("添加商品成功！");
+											mui.back();
+										}
+
+									},
+									error: function(xhr, type, errorThrown) {
+//										mui.toast("222");
+										console.log(JSON.stringify(newgood));
+										//异常处理；
+										console.log("1" + JSON.stringify(xhr));
+										console.log("2" + type);
+										console.log("3" + errorThrown);
+									}
+								});
+
 							} else {
 								mui.toast("取消...");
 							}
 						});
-						
-						
-						
+					}
+
+				})
+
+				//	单击对应图片
+				mui('#imgs_holder').on('tap', '.add_img', function(event) {
+						var imgid = this.id;
+
+						var del_icon_array = mui('#imgs_holder i');
+						var imgs_array = mui('#imgs_holder img');
+						//					mui.toast(del_icon_array.length);
+						for(var i = 0; i < del_icon_array.length; i++) {
+							del_icon_array[i].className = "";
+							imgs_array[i + 1].style.opacity = 1;
+						}
+						var currentElem = document.getElementById("del" + imgid + "");
+						var currentImg = document.getElementById(imgid);
+						currentImg.style.opacity = 0.5;
+						currentElem.className = "mui-icon mui-icon-closeempty";
+
+						//	删除选中照片
+						document.getElementById("del" + imgid + "").addEventListener('tap', function() {
+							//						mui.toast("对应的图片id为："+imgid);
+							//							mui.toast("当前数组长度为：" + imgsArray.length);
+							var btnArray = ['否', '是'];
+							mui.confirm('删除这张图片？', '骑境商城', btnArray, function(e) {
+								if(e.index == 1) {
+									mui.toast("删除成功...");
+
+									document.getElementById(imgid).remove();
+									document.getElementById("del" + imgid + "").remove();
+									currentElem.className = "";
+									//	删除图片顺序出错
+									imgsArray.splice(imgsArray.length - 1 - imgid, 1);
+
+								} else {
+									mui.toast("取消...");
+								}
+							});
+
+						})
+
+						//					mui.toast("id: " + imgid);
 					})
-					
+					//			
+
+				//	上传商品组图
+				document.getElementById("picarr_upload").addEventListener('tap', function() {
+					var imgsdata = imgsArray;
+					var btnArray = ['否', '是'];
+					mui.confirm('确认上传商品组图？', '骑境商城', btnArray, function(e) {
+						if(e.index == 1) {
+							mui.toast("长度为：" + imgsdata.length);
+							//	提交接口
+							mui.ajax('http://api.msyc.com.cn/api/admin/good/imgs', {
+								data: {
+									images: imgsdata,
+								},
+								dataType: 'json', //服务器返回json格式数据
+								type: 'post', //HTTP请求类型
+								timeout: 10000, //超时时间设置为10秒；
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								beforeSend: function() {
+									plus.nativeUI.showWaiting("正在上传...");
+								},
+								complete: function() {
+									plus.nativeUI.closeWaiting();
+								},
+								success: function(mdata) {
+
+									if(mdata.status == "success") {
+										//										mui.toast("上传成功！");
+										if(mdata.data.msg.length > 0) {
+											mui.toast("上传成功！")
+										} else {
+											mui.toast("重新上传...")
+										}
+//										picarr = "\"" + mdata.data.msg + "\"";
+										var picarr_arr = mdata.data.msg;
+										picarr = picarr_arr.toString();
+									}
+									console.log(mdata.data.msg);
+
+								},
+								error: function(xhr, type, errorThrown) {
+									//异常处理；
+									console.log(type);
+								}
+							});
+
+						} else {
+							mui.toast("取消...");
+						}
+					});
+				})
+
 			});
-			
+
+			//	修改商品缩略图
+			function changeGoodImg() {
+				mui.ajax('http://api.msyc.com.cn/api/pay/pic', {
+					data: {
+						image: localStorage.getItem('newImgbase'),
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					beforeSend: function() {
+						plus.nativeUI.showWaiting("上传中，请稍后...");
+					},
+					complete: function() {
+						plus.nativeUI.closeWaiting();
+					},
+					success: function(mdata) {
+
+						if(mdata.status == "success") {
+							mui.toast("上传成功！");
+//							picurl = "\"" + mdata.data.msg + "\"";
+							var picurl_arr =mdata.data.msg;
+							picurl = picurl_arr.toString();
+						}
+						console.log(mdata.data.msg);
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+
 			var newImgdata;
 			var j = 0; //	照片数量
-			var imgsArray = new Array();	//	存放照片的数组
+
 			// 从相册中选择多张图片 
 			function galleryImgs() {
 				// 从相册中选择图片
@@ -262,24 +635,24 @@
 
 					var table = document.body.querySelector('#imgs_holder');
 					for(var i in e.files) {
-//						console.log(e.files[i]); //	照片路径
-						var img = document.createElement('img');
-						img.className = 'add_img';
-						img.id = 'img' + j;
-						img.src = e.files[i];
-						
+
+						var span_out = document.createElement('span');
+						span_out.innerHTML = '<img id = "' + j + '" class="add_img" src="' + e.files[i] + '" />' +
+							'<i id = "del' + j + '" class=""></i>';
+
+						table.appendChild(span_out);
+
+						var img = document.getElementById(j);
+
 						var img_datas = getBase64Image(img);
 						newImgdata = img_datas.split(",")[1];
-						
-						//	选择的照片添加到数组中
 						imgsArray.unshift(newImgdata);
 
-						table.appendChild(img);
 						j++;
 					}
-					console.log("选择的照片数量为："+j);
-					console.log('图片数组长度：'+imgsArray.length);
-//					console.log(imgsArray);
+					console.log("选择的照片数量为：" + j);
+					console.log('图片数组长度：' + imgsArray.length);
+					//					console.log(imgsArray);
 
 				}, function(e) {
 					console.log("取消选择图片");
@@ -288,9 +661,6 @@
 					multiple: true
 				});
 			}
-			
-			
-			
 
 			//	相册获取照片
 			var imgArray = new Array();
@@ -308,9 +678,13 @@
 							//							console.log("data:"+data);
 							newImgbase = data.split(",")[1];
 							localStorage.setItem('newImgbase', newImgbase);
-							//							console.log("newImgbase:"+newImgbase);
+							//							console.log("newImgbase:" + newImgbase);
 							imgArray.push(newImgbase);
 							//							console.log(newImgbase);
+
+							//	上传缩略图
+							changeGoodImg();
+
 						}
 					},
 					function(e) {
@@ -321,38 +695,27 @@
 			//base64编码    
 			function getBase64Image(img) {
 				var canvas = document.createElement("canvas"); //创建canvas DOM元素，并设置其宽高和图片一样
-				canvas.width = img.width;
-				canvas.height = img.height;
+				var width = img.width;
+				var height = img.height;
+				// calculate the width and height, constraining the proportions 
+				if(width > height) {
+					height = Math.round(height *= 250 / width);
+					width = 250;
+				} else {
+					width = Math.round(width *= 250 / height);
+					height = 250;
+				}
+
+				//				mui.toast(scale);
+
+				canvas.width = width;
+				canvas.height = height;
 				var ctx = canvas.getContext("2d");
-				ctx.drawImage(img, 0, 0, img.width, img.height); //使用画布画图
+				ctx.drawImage(img, 0, 0, width, height); //使用画布画图
 				var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase(); //动态截取图片的格式
 				var dataURL = canvas.toDataURL("image/" + ext); //返回的是一串Base64编码的URL并指定格式
 				return dataURL;
 			}
-			
-			function getBase64Image2(img) { 
-            var canvas = document.createElement("canvas"); 
-            var width = img.width; 
-            var height = img.height; 
-            // calculate the width and height, constraining the proportions 
-            if (width > height) { 
-                if (width > 100) { 
-                    height = Math.round(height *= 100 / width); 
-                    width = 100; 
-                } 
-            } else { 
-                if (height > 100) { 
-                    width = Math.round(width *= 100 / height); 
-                    height = 100; 
-                } 
-            } 
-            canvas.width = width;   /*设置新的图片的宽度*/ 
-            canvas.height = height; /*设置新的图片的长度*/ 
-            var ctx = canvas.getContext("2d"); 
-            ctx.drawImage(img, 0, 0, width, height); /*绘图*/ 
-            var dataURL = canvas.toDataURL("image/png", 0.8); 
-            return dataURL.replace("data:image/png;base64,", ""); 
-        }
 
 			//	相机获取照片
 			function cameraImg() {
@@ -361,7 +724,19 @@
 				c.captureImage(function(e) {
 					plus.io.resolveLocalFileSystemURL(e, function(entry) {
 						var s = entry.toLocalURL() + "?version=" + new Date().getTime();
-						uploadHead(s); /*上传图片*/
+
+						var img_my = document.getElementById("picurl");
+						img_my.src = s;
+						img_my.style.width = "42px";
+						img_my.style.height = "42px";
+
+						var data = getBase64Image(img_my);
+						newImgbase = data.split(",")[1];
+						localStorage.setItem('newImgbase', newImgbase);
+
+						//	上传缩略图
+						changeGoodImg();
+
 					}, function(e) {
 						console.log("读取拍照文件错误：" + e.message);
 					});
@@ -372,81 +747,127 @@
 				})
 			}
 
-			function uploadHead(imgPath) {
-				console.log("imgPath = " + imgPath);
-				var mainImage = document.getElementById("picurl");
-				mainImage.src = imgPath;
-				mainImage.style.width = "42px";
-				mainImage.style.height = "?";
-
-				var image = new Image();
-				image.src = imgPath;
-				image.onload = function() {
-					var imgData = getBase64Image2(image);
-//					newImgbase = data.split(",")[1];
-					localStorage.setItem('newImgbase', imgData);
-				}
-			}
-
-//			console.log("测试base64文件名-----------------------------------------" + localStorage.getItem('newImgbase'));
+			//			console.log("测试base64文件名-----------------------------------------" + localStorage.getItem('newImgbase'));
 
 			(function($, doc) {
 				$.init();
 				$.ready(function() {
 
 					//	商品分类选择
-					var classPicker = new $.PopPicker({
-						layer: 2
+					mui.ajax('http://api.msyc.com.cn/api/admin/type/0,', {
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						success: function(mdata) {
+
+							//	商品分类选择
+							var classPicker = new $.PopPicker({
+								layer: 2
+							});
+							classPicker.setData(mdata.data);
+							var showClassPickerButton = doc.getElementById('fenlei');
+							var class_one = doc.getElementById('class_one');
+							var class_two = doc.getElementById('class_two');
+							showClassPickerButton.addEventListener('tap', function(event) {
+
+								classPicker.show(function(items) {
+									class_one.innerHTML = items[0].classname;
+									class_two.innerHTML = items[1].classname;
+
+									typeclassname = document.getElementById("class_two").innerHTML;
+									typeid = items[1].id;
+									typepid = items[1].parentid;
+									typepstr = items[1].parentstr;
+
+									mui.ajax('http://api.msyc.com.cn/api/admin/typeattr/' + typeid + '', {
+										dataType: 'json', //服务器返回json格式数据
+										type: 'get', //HTTP请求类型
+										timeout: 10000, //超时时间设置为10秒；
+										headers: {
+											'Content-Type': 'application/json'
+										},
+										success: function(mdata) {
+											if(mdata.data.length > 0) {
+												color_id = mdata.data[0].goodsAttrId;
+												specification_id = mdata.data[1].goodsAttrId;
+												//												mui.toast(color_id);
+												//												console.log(JSON.stringify(mdata.data[0].goodsAttrId));
+											} else {
+												mui.toast("该分类下无分类属性...")
+											}
+										},
+										error: function(xhr, type, errorThrown) {
+											//异常处理；
+											console.log(type);
+										}
+									});
+
+									//返回 false 可以阻止选择框的关闭
+									//return false;
+								});
+							}, false);
+
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
 					});
-					classPicker.setData(goodstypeData);
-					var showClassPickerButton = doc.getElementById('fenlei');
-					var class_one = doc.getElementById('class_one');
-					var class_two = doc.getElementById('class_two');
-					showClassPickerButton.addEventListener('tap', function(event) {
-						classPicker.show(function(items) {
-							class_one.innerHTML = items[0].text;
-							class_two.innerHTML = items[1].text;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
 
 					//	商品品牌选择
-					var good_brandPicker = new $.PopPicker();
-					good_brandPicker.setData([{
-						value: '1',
-						text: '金翌'
-					}, {
-						value: '2',
-						text: '鑫洋'
-					}, {
-						value: '3',
-						text: '其他'
-					}]);
-					var showgood_brandPicker = doc.getElementById('good_brand');
-					var good_brand = doc.getElementById('good_brand');
-					showgood_brandPicker.addEventListener('tap', function(event) {
-						good_brandPicker.show(function(items) {
-							good_brand.innerText = items[0].text;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
-						});
-					}, false);
+					mui.ajax('http://api.msyc.com.cn/api/admin/brand/0,', {
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						success: function(mdata) {
+
+							//	商品分类选择
+							var good_brandPicker = new $.PopPicker({
+								layer: 1
+							});
+							good_brandPicker.setData(mdata.data);
+							var showgood_brandPicker = doc.getElementById('good_brand');
+							var good_brand = doc.getElementById('good_brand');
+							showgood_brandPicker.addEventListener('tap', function(event) {
+								good_brandPicker.show(function(items) {
+									good_brand.innerText = items[0].classname;
+
+									brandclassname = document.getElementById("good_brand").innerHTML;
+									brandid = items[0].id;
+									brandpid = items[0].parentid;
+									brandpstr = items[0].parentstr;
+									//返回 false 可以阻止选择框的关闭
+									//return false;
+								});
+							}, false);
+
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
+					});
 
 					//	运费承担选择
 					var cost_respPicker = new $.PopPicker();
 					cost_respPicker.setData([{
 						value: '1',
-						text: '买家承担'
+						classname: '买家承担'
 					}, {
 						value: '2',
-						text: '卖家承担'
+						classname: '卖家承担'
 					}]);
 					var showcost_respPicker = doc.getElementById('cost_resp');
 					var cost_resp = doc.getElementById('cost_resp');
 					showcost_respPicker.addEventListener('tap', function(event) {
 						cost_respPicker.show(function(items) {
-							cost_resp.innerText = items[0].text;
+							cost_resp.innerText = items[0].classname;
 							//返回 false 可以阻止选择框的关闭
 							//return false;
 						});
@@ -456,16 +877,16 @@
 					var stock_warningPicker = new $.PopPicker();
 					stock_warningPicker.setData([{
 						value: '1',
-						text: '是'
+						classname: '是'
 					}, {
 						value: '2',
-						text: '否'
+						classname: '否'
 					}]);
 					var showstock_warningPicker = doc.getElementById('stock_warning');
 					var stock_warning = doc.getElementById('stock_warning');
 					showstock_warningPicker.addEventListener('tap', function(event) {
 						stock_warningPicker.show(function(items) {
-							stock_warning.innerText = items[0].text;
+							stock_warning.innerText = items[0].classname;
 							//返回 false 可以阻止选择框的关闭
 							//return false;
 						});

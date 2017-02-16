@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+			#add_attr {
+				padding: 10px 15px;
+			}
+			
+			#add_attr_btn {
+				display: block;
+				margin: 10px auto;
+				background-color: #41CEA9;
+				color: #FFFFFF;
+				border: solid 1px #41CEA9;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">分类属性</h1>
+		</header>
+
+		<div class="mui-content">
+			<ul id="OA_task_1" class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+
+			</ul>
+
+			<button id="add_attr_btn" type="button" class="mui-btn">添加分类属性</button>
+
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+
+			mui.plusReady(function() {
+				//	传来的goodid
+				var self = plus.webview.currentWebview();
+				var typeid = self.typeid;
+				var goodsid;
+				//				mui.toast(typeid);
+
+				mui.ajax('http://api.msyc.com.cn/api/admin/typeattr/' + typeid + '', {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(mdata) {
+
+						if(mdata.data.length > 0) {
+							var table = document.body.querySelector('#OA_task_1');
+							for(var i = 0; i < mdata.data.length; i++) {
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								li.id = mdata.data[i].goodsAttrId;
+
+								li.innerHTML = '<div class="mui-slider-right mui-disabled">' +
+									'<a class="mui-btn mui-btn-red">删除</a>' +
+									'</div>' +
+									'<div class="mui-slider-handle">' +
+									'<p class="mui-h5 mui-ellipsis">' +
+									'<span>属性名称：<span>' + mdata.data[i].attrname + '</span></span>' +
+									'</p>' +
+									'</div>';
+
+								table.appendChild(li);
+							}
+
+							goodsid = mdata.data[0].goodsid;
+						} else {
+							mui.toast("该分类下暂无属性，请添加属性...")
+						}
+
+					},
+					error: function(xhr, type, errorThrown) { //异常处理；
+						console.log(type);
+					}
+				});
+
+				//	删除属性
+				var btnArray = ['确认', '取消'];
+				mui('#OA_task_1').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					mui.confirm('确认删除该条分类属性？', '骑境商城', btnArray, function(e) {
+						if(e.index == 0) {
+							//	删除操作
+							var attrid = li.id;
+
+							mui.ajax('http://api.msyc.com.cn/api/admin/typeattr/del/' + attrid + '', {
+								dataType: 'json', //服务器返回json格式数据
+								type: 'get', //HTTP请求类型
+								timeout: 10000, //超时时间设置为10秒；
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								success: function(mdata) {
+									console.log(JSON.stringify(mdata));
+									if(mdata.status == "success") {
+										li.parentNode.removeChild(li);
+										mui.toast("删除成功！");
+									} else {
+										mui.toast(mdata.data.msg);
+									}
+									mui.swipeoutClose(li);
+
+								},
+								error: function(xhr, type, errorThrown) {
+									//异常处理；
+									mui.toast("删除失败，请稍后再试。。");
+									console.log(type);
+								}
+							});
+
+						} else {
+							setTimeout(function() {
+								mui.swipeoutClose(li);
+							}, 0);
+						}
+					});
+				});
+				
+				//	添加分类属性
+				document.getElementById("add_attr_btn").addEventListener('tap',function(){
+					mui.openWindow({
+						url:'goodsattr_add.html',
+						createNew:true,
+						extras: {
+													goodsid: goodsid,
+												},						
+					})
+				})
+				
+				
+			})
+		</script>
+	</body>
+
+</html>

@@ -561,7 +561,8 @@
 					"css/mui.min.css"
 				],
 				"refer": [
-					"goodsMgr/goods_add_type.html"
+					"goodsMgr/goods_add_type.html",
+					"goodsMgr/goodsattr_show.html"
 				],
 				"priority": 0
 			},
@@ -610,6 +611,30 @@
 					"js/mui.poppickeroverride.js"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"goodsMgr/goodsattr_add.html": {
+				"resources": [
+					"js/mui.pickeroverride.js",
+					"js/mui.poppickeroverride.js",
+					"css/mui.poppicker.css",
+					"css/mui.picker.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"goodsMgr/goodsattr_show.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"goodsMgr/goodsattr_add.html"
+				],
 				"priority": 0
 			}
 		},

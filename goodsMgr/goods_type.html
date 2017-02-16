@@ -46,67 +46,69 @@
 		<script type="text/javascript">
 			mui.init();
 
-			var data = {
-				"type": [{
-					"id": 1,
-					"name": "电动车",
-					"types": [{
-						"id": "ddc01",
-						"name": "二轮电动车"
-					}, {
-						"id": "ddc02",
-						"name": "三轮电动车"
-					}, {
-						"id": "ddc03",
-						"name": "四轮电动车"
-					}]
-				}, {
-					"id": 2,
-					"name": "摩托车",
-					"types": [{
-						"id": "mtc01",
-						"name": "二轮电动车"
-					}, {
-						"id": "mtc02",
-						"name": "三轮电动车"
-					}, {
-						"id": "mtc03",
-						"name": "四轮电动车"
-					}]
-				}, {
-					"id": 3,
-					"name": "新能源汽车",
-					"types": [{
-						"id": "xny01",
-						"name": "能源汽车"
-					}, {
-						"id": "xny02",
-						"name": "电动能源车"
-					}]
-				}, {
-					"id": 4,
-					"name": "配件",
-					"types": [{
-						"id": "pj01",
-						"name": "发动机"
-					}, {
-						"id": "pj02",
-						"name": "电池"
-					}, {
-						"id": "pj03",
-						"name": "轮胎"
-					}, {
-						"id": "pj04",
-						"name": "化油器"
-					}, {
-						"id": "pj05",
-						"name": "倒挡器"
-					}, {
-						"id": "pj06",
-						"name": "仪表"
-					}]
-				}]
-			};
+			//			var data = {
+			//				"type": [{
+			//					"id": 1,
+			//					"name": "电动车",
+			//					"types": [{
+			//						"id": "ddc01",
+			//						"name": "二轮电动车"
+			//					}, {
+			//						"id": "ddc02",
+			//						"name": "三轮电动车"
+			//					}, {
+			//						"id": "ddc03",
+			//						"name": "四轮电动车"
+			//					}]
+			//				}, {
+			//					"id": 2,
+			//					"name": "摩托车",
+			//					"types": [{
+			//						"id": "mtc01",
+			//						"name": "二轮电动车"
+			//					}, {
+			//						"id": "mtc02",
+			//						"name": "三轮电动车"
+			//					}, {
+			//						"id": "mtc03",
+			//						"name": "四轮电动车"
+			//					}]
+			//				}, {
+			//					"id": 3,
+			//					"name": "新能源汽车",
+			//					"types": [{
+			//						"id": "xny01",
+			//						"name": "能源汽车"
+			//					}, {
+			//						"id": "xny02",
+			//						"name": "电动能源车"
+			//					}]
+			//				}, {
+			//					"id": 4,
+			//					"name": "配件",
+			//					"types": [{
+			//						"id": "pj01",
+			//						"name": "发动机"
+			//					}, {
+			//						"id": "pj02",
+			//						"name": "电池"
+			//					}, {
+			//						"id": "pj03",
+			//						"name": "轮胎"
+			//					}, {
+			//						"id": "pj04",
+			//						"name": "化油器"
+			//					}, {
+			//						"id": "pj05",
+			//						"name": "倒挡器"
+			//					}, {
+			//						"id": "pj06",
+			//						"name": "仪表"
+			//					}]
+			//				}]
+			//			};
+
+			var class_one_arr = [];
 
 			mui.plusReady(function() {
 				document.getElementById("add_type").addEventListener('tap', function() {
@@ -131,6 +133,7 @@
 							var li = document.createElement('li');
 							li.className = 'mui-table-view-cell mui-collapse';
 							li.id = mdata.data[i].id;
+							class_one_arr.push(mdata.data[i].id);
 
 							li.innerHTML = '<a class="mui-navigate-right" href="#">' + mdata.data[i].classname + '</a>' +
 								'<div class="mui-collapse-content">' +
@@ -139,7 +142,7 @@
 								'</div>';
 
 							table.appendChild(li);
-							
+
 						}
 					},
 					error: function(xhr, type, errorThrown) {
@@ -147,16 +150,16 @@
 						console.log(type);
 					}
 				});
-				
+
 				//	获取二级菜单
 				mui('#parent_class').on('tap', '.mui-collapse',
 					function() {
 						var id = this.getAttribute('id');
-//						console.log("id为"+id);
-						
-						var tablesub = document.getElementById("sub_class"+id+"");
-						if(tablesub.innerHTML == ""){
-							mui.ajax('http://api.msyc.com.cn/api/admin/type/0,'+id+',', {
+						//						console.log("id为"+id);
+
+						var tablesub = document.getElementById("sub_class" + id + "");
+						if(tablesub.innerHTML == "") {
+							mui.ajax('http://api.msyc.com.cn/api/admin/type/0,' + id + ',', {
 								dataType: 'json', //服务器返回json格式数据
 								type: 'get', //HTTP请求类型
 								timeout: 10000, //超时时间设置为10秒；
@@ -169,9 +172,27 @@
 										var li = document.createElement('li');
 										li.className = 'mui-table-view-cell';
 										li.id = mdata.data[j].id;
-										li.innerHTML = ''+mdata.data[j].classname+'';
-										tablesub.appendChild(li);;
+										li.innerHTML = '' + mdata.data[j].classname + '';
+										tablesub.appendChild(li);
 									}
+
+									for(var i = 0; i < class_one_arr.length; i++) {
+
+										mui("#" + class_one_arr[i] + "").on('tap', '.mui-table-view-cell', function() {
+											var self = this;
+											var typeid = this.id;
+//											mui.toast(typeid); 
+											mui.openWindow({
+												url: 'goodsattr_show.html',
+												createNew: true,
+												extras: {
+													typeid: typeid,
+												},
+											});
+										})
+									}
+									class_one_arr = [];
+
 
 								},
 								error: function(xhr, type, errorThrown) {
@@ -180,10 +201,8 @@
 								}
 							});
 						}
-						
-						
+
 					});
-				
 
 			})
 		</script>

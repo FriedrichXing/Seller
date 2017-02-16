@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.picker.css" />
+		<link rel="stylesheet" href="../css/mui.poppicker.css" />
+
+		<style type="text/css">
+			.title {
+				margin: 8px 15px;
+			}
+			
+			.span_line_height {
+				line-height: 40px;
+			}
+			
+			#add_attr {
+				width: 90%;
+				display: block;
+				margin: 20px auto;
+				height: 40px;
+				padding: 0px;
+				font-size: 15px;
+				background-color: #41CEA9;
+				border: solid 1px #41CEA9;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #41CEA9;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">添加分类属性</h1>
+		</header>
+		<div class="mui-content">
+			<!--分类详情-->
+			<p class="title">分类详情</p>
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>隐藏类别</label>
+					<span id="stock_warning" class="span_line_height">显示</span>
+				</div>
+				<div class="mui-input-row">
+					<label>属性名称</label>
+					<input id="class_name" type="text" class="mui-input-clear" placeholder="请输入属性名称">
+				</div>
+
+			</form>
+
+			<button id="add_attr" type="button" class="mui-btn mui-btn-blue mui-btn-block">确认添加</button>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/mui.pickeroverride.js"></script>
+		<script type="text/javascript" src="../js/mui.poppickeroverride.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				var goodsid = self.goodsid;
+				//				mui.toast(goodsid);
+
+				//	隐藏类别选择
+				var stock_warningPicker = new mui.PopPicker();
+				stock_warningPicker.setData([{
+					value: '1',
+					classname: '显示'
+				}, {
+					value: '2',
+					classname: '隐藏'
+				}]);
+				var showstock_warningPicker = document.getElementById('stock_warning');
+				var stock_warning = document.getElementById('stock_warning');
+				showstock_warningPicker.addEventListener('tap', function(event) {
+					stock_warningPicker.show(function(items) {
+						stock_warning.innerText = items[0].classname;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+
+				//	添加属性
+				document.getElementById("add_attr").addEventListener('tap', function() {
+					var btnArray = ['否', '是'];
+					mui.confirm('确认添加？', '骑境商城', btnArray, function(e) {
+						if(e.index == 1) {
+							if(document.getElementById("class_name").value == ""){
+								mui.toast("请填写属性名称...");
+							}else{
+								mui.ajax('http://api.msyc.com.cn/api/admin/typeattr/add', {
+								data: {
+									goodsid: goodsid,
+									attrname: document.getElementById("class_name").value
+								},
+								dataType: 'json', //服务器返回json格式数据
+								type: 'post', //HTTP请求类型
+								timeout: 10000, //超时时间设置为10秒；
+								headers: {
+									'Content-Type': 'application/json'
+								},
+								success: function(mdata) {
+									console.log(JSON.stringify(mdata));
+									if(mdata.status == "success") {
+										mui.toast("添加成功！")
+										var goodsattr_show = plus.webview.getWebviewById('goodsattr_show.html');
+
+										plus.webview.close(goodsattr_show, 0);
+										
+										mui.back();
+
+									} else {
+										mui.toast(mdata.data.msg);
+									}
+
+								},
+								error: function(xhr, type, errorThrown) {
+									//异常处理；
+									console.log(type);
+								}
+							});
+							}
+							
+							
+							
+							
+						} else {
+							mui.toast("取消...");
+						}
+					});
+
+				})
+
+			})
+		</script>
+	</body>
+
+</html>
